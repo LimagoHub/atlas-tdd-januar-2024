@@ -1,0 +1,330 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-RelWithDebInfo-94982ef88b2a802ff375.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "tests",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-tests-RelWithDebInfo-70e4927a02b591d5c1f8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3
+					]
+				},
+				{
+					"build" : "tests/google",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-tests.google-RelWithDebInfo-8630115b7a37cb04dbde.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "tests/google"
+				},
+				{
+					"build" : "tests/google/googlemock",
+					"childIndexes" : 
+					[
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-tests.google.googlemock-RelWithDebInfo-2f885dff4892978a6b68.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 2,
+					"source" : "tests/google/googlemock",
+					"targetIndexes" : 
+					[
+						6,
+						7,
+						8,
+						9,
+						10,
+						11
+					]
+				},
+				{
+					"build" : "tests/google/googletest",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-tests.google.googletest-RelWithDebInfo-e39387a24242b8506ae9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 3,
+					"source" : "tests/google/googletest",
+					"targetIndexes" : 
+					[
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "QT6EuroToDollarCalculator",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "googletest-distribution",
+					"parentIndex" : 0
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "gmock",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						6,
+						7,
+						8,
+						9,
+						10,
+						11
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "gtest",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "QT6EuroToDollarCalculator::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-QT6EuroToDollarCalculator-RelWithDebInfo-6ff0cd72349db2e37723.json",
+					"name" : "QT6EuroToDollarCalculator",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "QT6EuroToDollarCalculatorTest::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-QT6EuroToDollarCalculatorTest-RelWithDebInfo-4107fcde3373d61f1571.json",
+					"name" : "QT6EuroToDollarCalculatorTest",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "QT6EuroToDollarCalculatorTest_autogen::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-QT6EuroToDollarCalculatorTest_autogen-RelWithDebInfo-00eeab36ebbc071ba5d5.json",
+					"name" : "QT6EuroToDollarCalculatorTest_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "QT6EuroToDollarCalculatorTest_autogen_timestamp_deps::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-QT6EuroToDollarCalculatorTest_autogen_timestamp_deps-RelWithDebInfo-31a2b22f78a2b35fa022.json",
+					"name" : "QT6EuroToDollarCalculatorTest_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "QT6EuroToDollarCalculator_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-QT6EuroToDollarCalculator_autogen-RelWithDebInfo-3eebbb0a67623612119f.json",
+					"name" : "QT6EuroToDollarCalculator_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "QT6EuroToDollarCalculator_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-QT6EuroToDollarCalculator_autogen_timestamp_deps-RelWithDebInfo-a583690faa0269b398a3.json",
+					"name" : "QT6EuroToDollarCalculator_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gmock::@71511ec9755e569acd64",
+					"jsonFile" : "target-gmock-RelWithDebInfo-771f4d0e31ed4c98f9fa.json",
+					"name" : "gmock",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gmock_autogen::@71511ec9755e569acd64",
+					"jsonFile" : "target-gmock_autogen-RelWithDebInfo-ede0c96a3f9bd6e8a21c.json",
+					"name" : "gmock_autogen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gmock_autogen_timestamp_deps::@71511ec9755e569acd64",
+					"jsonFile" : "target-gmock_autogen_timestamp_deps-RelWithDebInfo-9b013488d35c3780a414.json",
+					"name" : "gmock_autogen_timestamp_deps",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gmock_main::@71511ec9755e569acd64",
+					"jsonFile" : "target-gmock_main-RelWithDebInfo-c7162bd8000edae77874.json",
+					"name" : "gmock_main",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gmock_main_autogen::@71511ec9755e569acd64",
+					"jsonFile" : "target-gmock_main_autogen-RelWithDebInfo-4bb4ded56799935e2e2c.json",
+					"name" : "gmock_main_autogen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "gmock_main_autogen_timestamp_deps::@71511ec9755e569acd64",
+					"jsonFile" : "target-gmock_main_autogen_timestamp_deps-RelWithDebInfo-0ad4f1995e680ef65423.json",
+					"name" : "gmock_main_autogen_timestamp_deps",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "gtest::@80bf43194dc2f566920c",
+					"jsonFile" : "target-gtest-RelWithDebInfo-89616171e7c0f591257a.json",
+					"name" : "gtest",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "gtest_autogen::@80bf43194dc2f566920c",
+					"jsonFile" : "target-gtest_autogen-RelWithDebInfo-924ee64cc0c4ce42d452.json",
+					"name" : "gtest_autogen",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "gtest_autogen_timestamp_deps::@80bf43194dc2f566920c",
+					"jsonFile" : "target-gtest_autogen_timestamp_deps-RelWithDebInfo-3ff17f56f624c14af50d.json",
+					"name" : "gtest_autogen_timestamp_deps",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "gtest_main::@80bf43194dc2f566920c",
+					"jsonFile" : "target-gtest_main-RelWithDebInfo-2d632f23a3d50e91da36.json",
+					"name" : "gtest_main",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "gtest_main_autogen::@80bf43194dc2f566920c",
+					"jsonFile" : "target-gtest_main_autogen-RelWithDebInfo-a7b196f86f5fdfb5fd5f.json",
+					"name" : "gtest_main_autogen",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "gtest_main_autogen_timestamp_deps::@80bf43194dc2f566920c",
+					"jsonFile" : "target-gtest_main_autogen_timestamp_deps-RelWithDebInfo-ccf8ab397ab42947f150.json",
+					"name" : "gtest_main_autogen_timestamp_deps",
+					"projectIndex" : 3
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/build-QT6EuroToDollarCalculator-Desktop_Qt_6_6_1_MinGW_64_bit-Profile",
+		"source" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

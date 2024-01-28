@@ -1,0 +1,102 @@
+{
+	"BUILD_DIR" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/build-QT6EuroToDollarCalculator-Desktop_Qt_6_6_1_MinGW_64_bit-Profile/tests/QT6EuroToDollarCalculatorTest_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/build-QT6EuroToDollarCalculator-Desktop_Qt_6_6_1_MinGW_64_bit-Profile",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/build-QT6EuroToDollarCalculator-Desktop_Qt_6_6_1_MinGW_64_bit-Profile/tests",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/tests",
+	"CMAKE_EXECUTABLE" : "C:/Applications/qt66/Tools/CMake_64/bin/cmake.exe",
+	"CMAKE_LIST_FILES" : 
+	[
+		"C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/tests/CMakeLists.txt"
+	],
+	"CMAKE_SOURCE_DIR" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator",
+	"DEP_FILE" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/build-QT6EuroToDollarCalculator-Desktop_Qt_6_6_1_MinGW_64_bit-Profile/tests/QT6EuroToDollarCalculatorTest_autogen/deps",
+	"DEP_FILE_RULE_NAME" : "QT6EuroToDollarCalculatorTest_autogen/timestamp",
+	"HEADERS" : 
+	[
+		[
+			"C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/tests/Mockeuro_to_dollar_calculator.h",
+			"MU",
+			"EWIEGA46WW/moc_Mockeuro_to_dollar_calculator.cpp",
+			null
+		],
+		[
+			"C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/tests/Mockeuro_to_dollar_view.h",
+			"MU",
+			"EWIEGA46WW/moc_Mockeuro_to_dollar_view.cpp",
+			null
+		],
+		[
+			"C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/tests/Mockexchange_rate_service.h",
+			"MU",
+			"EWIEGA46WW/moc_Mockexchange_rate_service.cpp",
+			null
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/build-QT6EuroToDollarCalculator-Desktop_Qt_6_6_1_MinGW_64_bit-Profile/tests/QT6EuroToDollarCalculatorTest_autogen/include",
+	"MOC_COMPILATION_FILE" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/build-QT6EuroToDollarCalculator-Desktop_Qt_6_6_1_MinGW_64_bit-Profile/tests/QT6EuroToDollarCalculatorTest_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : [],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/tests/google/googletest/include",
+		"C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/tests/google/googletest",
+		"C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/tests/google/googlemock/include",
+		"C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/tests/google/googlemock",
+		"C:/Applications/qt66/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++",
+		"C:/Applications/qt66/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32",
+		"C:/Applications/qt66/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward",
+		"C:/Applications/qt66/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include",
+		"C:/Applications/qt66/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed",
+		"C:/Applications/qt66/Tools/mingw1120_64/x86_64-w64-mingw32/include"
+	],
+	"MOC_MACRO_NAMES" : 
+	[
+		"Q_OBJECT",
+		"Q_GADGET",
+		"Q_NAMESPACE",
+		"Q_NAMESPACE_EXPORT",
+		"Q_GADGET_EXPORT"
+	],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : false,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"C:/Applications/qt66/Tools/mingw1120_64/bin/g++.exe",
+		"-std=gnu++17",
+		"-dM",
+		"-E",
+		"-c",
+		"C:/Applications/qt66/Tools/CMake_64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/build-QT6EuroToDollarCalculator-Desktop_Qt_6_6_1_MinGW_64_bit-Profile/tests/QT6EuroToDollarCalculatorTest_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 8,
+	"PARSE_CACHE_FILE" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/build-QT6EuroToDollarCalculator-Desktop_Qt_6_6_1_MinGW_64_bit-Profile/tests/CMakeFiles/QT6EuroToDollarCalculatorTest_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "C:/Applications/qt66/6.6.1/mingw_64/./bin/moc.exe",
+	"QT_UIC_EXECUTABLE" : "C:/Applications/qt66/6.6.1/mingw_64/./bin/uic.exe",
+	"QT_VERSION_MAJOR" : 6,
+	"QT_VERSION_MINOR" : 6,
+	"SETTINGS_FILE" : "C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/build-QT6EuroToDollarCalculator-Desktop_Qt_6_6_1_MinGW_64_bit-Profile/tests/CMakeFiles/QT6EuroToDollarCalculatorTest_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[
+			"C:/Users/JoachimWagner/git/Atlas/atlas-tdd-januar-2024/QT6EuroToDollarCalculator/tests/test.cpp",
+			"MU",
+			null
+		]
+	],
+	"UIC_OPTIONS" : [],
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : [],
+	"UIC_UI_FILES" : [],
+	"VERBOSITY" : 0
+}
