@@ -1,0 +1,6 @@
+
+r	cpp:S3490	"VUse "=default" instead of the default implementation of this special member functions.(…âŞˆ8è•ó£Õ1
+˜	cpp:S5951"wRemove the top level "const" qualifier from the return type of this function. The current return type is "const _Bool".(ª‡Êüÿÿÿÿ8İ˜£Õ1
+J	cpp:S5817")This function should be declared "const".(ª‡Êüÿÿÿÿ8±Şñ£Õ1
+˜	cpp:S5951"wRemove the top level "const" qualifier from the return type of this function. The current return type is "const _Bool".(¹¯Îïşÿÿÿÿ8Çå™£Õ1
+J	cpp:S5817")This function should be declared "const".(¹¯Îïşÿÿÿÿ8±Şñ£Õ1

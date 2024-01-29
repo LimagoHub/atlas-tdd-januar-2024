@@ -1,0 +1,4 @@
+
+Ý	cpp:S5952
+"ÇAdd a using-declaration to this derived class to inherit the constructors of "exception", and remove the ones you manually duplicated. Note that this may add other constructors to your derived class.(çññ²
+p	cpp:S3490"VUse "=default" instead of the default implementation of this special member functions.(Êìï§ÿÿÿÿÿ

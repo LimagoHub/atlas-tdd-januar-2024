@@ -15,7 +15,7 @@ set_target_properties(gmock_main gtest_main PROPERTIES EXCLUDE_FROM_ALL 1 EXCLUD
 
 set(SOURCE
 	main.cpp
-		)
+        test.cpp collections/StapelTest.cpp collections/StapelTest.h ../source/collections/Stapel.cpp)
 
 
 
