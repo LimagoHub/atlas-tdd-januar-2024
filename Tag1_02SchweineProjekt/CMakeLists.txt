@@ -13,7 +13,7 @@ set(PROJ_CONFIG $<CONFIG>)
 add_executable(
 	Tag1_02SchweineProjekt 
 	source/main.cpp
-)
+		source/tiere/Schwein.h)
 
 
 # Add tests

@@ -1,0 +1,5 @@
+
+D	cpp:S1117"(declaration shadows a field of 'Schwein'(ü¨“Ë8Ö¦Þ¥Õ1
+I	cpp:S1117"(declaration shadows a field of 'Schwein'(ýÏäñúÿÿÿÿ8å÷é¥Õ1
+g	cpp:S6009"FReplace this const reference to "std::string" by a "std::string_view".(ýÏäñúÿÿÿÿ8ù÷é¥Õ1
+Š	cpp:S3230"nDo not use the constructor's initializer list for data member "gewicht". Use the in-class initializer instead.(§Ýä¦8ç¦Þ¥Õ1
