@@ -3,11 +3,11 @@
 //
 
 #pragma once
-
+#include <vector>
 
 class Stapel {
-    int data[10];
-    int index{0};
+    std::vector<int> data;
+
 
 public:
     Stapel();

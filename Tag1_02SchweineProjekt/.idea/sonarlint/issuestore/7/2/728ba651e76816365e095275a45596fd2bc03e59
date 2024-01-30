@@ -1,0 +1,8 @@
+
+a	cpp:S1235"E'OtherDEpendecyImpl' has virtual functions but non-virtual destructor(©ù“…8û®ßªÕ1
+r	cpp:S3490
+"VUse "=default" instead of the default implementation of this special member functions.(´ç˜Ö8±çßªÕ1
+u	cpp:S1186"YAdd a nested comment explaining why this method is empty, or complete the implementation.(ª»ÿŠ8°’–«Õ1
+Z	cpp:S1238">Pass expensive to copy object "message" by reference to const.(ª»ÿŠ8£àªÕ1
+Z	cpp:S1238">Pass expensive to copy object "message" by reference to const.(½õõ8ĞÂõªÕ1
+a	cpp:S1235"E'OtherDEpendecyImpl' has virtual functions but non-virtual destructor(©ù“…8ãœÎ­Õ1

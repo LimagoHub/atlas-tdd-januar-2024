@@ -1,0 +1,5 @@
+
+[	cpp:S1235"A'DependencyImpl' has virtual functions but non-virtual destructor(Ùö¨¤øÿÿÿÿ
+q	cpp:S5276"\implicit conversion loses integer precision: 'size_type' (aka 'unsigned long long') to 'int'(öİÇô
+S	cpp:S1238">Pass expensive to copy object "message" by reference to const.(ª»ÿŠ
+S	cpp:S1238">Pass expensive to copy object "message" by reference to const.(½õõ

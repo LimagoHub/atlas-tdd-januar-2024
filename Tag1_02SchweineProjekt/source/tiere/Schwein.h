@@ -17,7 +17,10 @@ class Schwein {
         Schwein::gewicht = gewicht;
     }
 public:
-    explicit Schwein(const std::string &name="Nobody") :  gewicht(10) {
+
+    static inline const int INITIAL_WEIGHT{10};
+
+    explicit Schwein(const std::string &name="Nobody") :  gewicht(INITIAL_WEIGHT) {
         setName(name);
     }
 
@@ -26,7 +29,7 @@ public:
     }
 
     void setName(const std::string &name) {
-        if(name == "Elsa") throw std::invalid_argument("Elsa ist nicht erlaubt");
+        if(name == "Elsa") throw std::invalid_argument("Name ist nicht erlaubt");
         Schwein::name = name;
     }
 

@@ -1,0 +1,8 @@
+
+6	cpp:S1003
+"Remove this using-directive.(ÉÔ³òÿÿÿÿÿ
+E	cpp:S5817")This function should be declared "const".(ÂÔÛØ8ïÎåªÕ1
+J	cpp:S5817")This function should be declared "const".(³ØÍşÿÿÿÿ8ñÎåªÕ1
+E	cpp:S5817")This function should be declared "const".(Á‹”­8òÎåªÕ1
+Z	cpp:S1238">Pass expensive to copy object "message" by reference to const.(Á‹”­8òÎåªÕ1
+9cpp:S125"Remove the commented out code.(ÍşĞŒ8ÔÉå¬Õ1
