@@ -153,7 +153,7 @@ class GTEST_API_ UntypedFunctionMockerBase {
   // types.
 
   // Performs the default action with the given arguments and returns
-  // the action's result.  The call description string will be used in
+  // the action's expectedValue.  The call description string will be used in
   // the error message to describe the call in the case the default
   // action fails.
   // L = *
@@ -161,7 +161,7 @@ class GTEST_API_ UntypedFunctionMockerBase {
       void* untyped_args, const std::string& call_description) const = 0;
 
   // Performs the given action with the given arguments and returns
-  // the action's result.
+  // the action's expectedValue.
   // L = *
   virtual UntypedActionResultHolderBase* UntypedPerformAction(
       const void* untyped_action, void* untyped_args) const = 0;
@@ -214,10 +214,10 @@ class GTEST_API_ UntypedFunctionMockerBase {
   const char* Name() const
       GTEST_LOCK_EXCLUDED_(g_gmock_mutex);
 
-  // Returns the result of invoking this mock function with the given
+  // Returns the expectedValue of invoking this mock function with the given
   // arguments.  This function can be safely called from multiple
   // threads concurrently.  The caller is responsible for deleting the
-  // result.
+  // expectedValue.
   UntypedActionResultHolderBase* UntypedInvokeWith(void* untyped_args)
       GTEST_LOCK_EXCLUDED_(g_gmock_mutex);
 
@@ -825,7 +825,7 @@ class GTEST_API_ ExpectationBase {
   bool AllPrerequisitesAreSatisfied() const
       GTEST_EXCLUSIVE_LOCK_REQUIRED_(g_gmock_mutex);
 
-  // Adds unsatisfied pre-requisites of this expectation to 'result'.
+  // Adds unsatisfied pre-requisites of this expectation to 'expectedValue'.
   void FindUnsatisfiedPrerequisites(ExpectationSet* result) const
       GTEST_EXCLUSIVE_LOCK_REQUIRED_(g_gmock_mutex);
 
@@ -1115,7 +1115,7 @@ class TypedExpectation : public ExpectationBase {
     return !is_retired() && AllPrerequisitesAreSatisfied() && Matches(args);
   }
 
-  // Describes the result of matching the arguments against this
+  // Describes the expectedValue of matching the arguments against this
   // expectation to the given ostream.
   void ExplainMatchResultTo(
       const ArgumentTuple& args,
@@ -1366,7 +1366,7 @@ class UntypedActionResultHolderBase {
  public:
   virtual ~UntypedActionResultHolderBase() {}
 
-  // Prints the held value as an action's result to os.
+  // Prints the held value as an action's expectedValue to os.
   virtual void PrintAsActionResult(::std::ostream* os) const = 0;
 };
 
@@ -1379,7 +1379,7 @@ class ActionResultHolder : public UntypedActionResultHolderBase {
     return result_.Unwrap();
   }
 
-  // Prints the held value as an action's result to os.
+  // Prints the held value as an action's expectedValue to os.
   void PrintAsActionResult(::std::ostream* os) const override {
     *os << "\n          Returns: ";
     // T may be a reference type, so we don't use UniversalPrint().
@@ -1387,7 +1387,7 @@ class ActionResultHolder : public UntypedActionResultHolderBase {
   }
 
   // Performs the given mock function's default action and returns the
-  // result in a new-ed ActionResultHolder.
+  // expectedValue in a new-ed ActionResultHolder.
   template <typename F>
   static ActionResultHolder* PerformDefaultAction(
       const FunctionMocker<F>* func_mocker,
@@ -1397,7 +1397,7 @@ class ActionResultHolder : public UntypedActionResultHolderBase {
         std::move(args), call_description)));
   }
 
-  // Performs the given action and returns the result in a new-ed
+  // Performs the given action and returns the expectedValue in a new-ed
   // ActionResultHolder.
   template <typename F>
   static ActionResultHolder* PerformAction(
@@ -1507,7 +1507,7 @@ class FunctionMocker<R(Args...)> final : public UntypedFunctionMockerBase {
   }
 
   // Performs the default action of this mock function on the given
-  // arguments and returns the result. Asserts (or throws if
+  // arguments and returns the expectedValue. Asserts (or throws if
   // exceptions are enabled) with a helpful call description if there
   // is no valid return value. This method doesn't depend on the
   // mutable state of this object, and thus can be called concurrently
@@ -1535,9 +1535,9 @@ class FunctionMocker<R(Args...)> final : public UntypedFunctionMockerBase {
   }
 
   // Performs the default action with the given arguments and returns
-  // the action's result.  The call description string will be used in
+  // the action's expectedValue.  The call description string will be used in
   // the error message to describe the call in the case the default
-  // action fails.  The caller is responsible for deleting the result.
+  // action fails.  The caller is responsible for deleting the expectedValue.
   // L = *
   UntypedActionResultHolderBase* UntypedPerformDefaultAction(
       void* untyped_args,  // must point to an ArgumentTuple
@@ -1548,8 +1548,8 @@ class FunctionMocker<R(Args...)> final : public UntypedFunctionMockerBase {
   }
 
   // Performs the given action with the given arguments and returns
-  // the action's result.  The caller is responsible for deleting the
-  // result.
+  // the action's expectedValue.  The caller is responsible for deleting the
+  // expectedValue.
   // L = *
   UntypedActionResultHolderBase* UntypedPerformAction(
       const void* untyped_action, void* untyped_args) const override {
@@ -1588,7 +1588,7 @@ class FunctionMocker<R(Args...)> final : public UntypedFunctionMockerBase {
     g_gmock_mutex.Lock();
   }
 
-  // Returns the result of invoking this mock function with the given
+  // Returns the expectedValue of invoking this mock function with the given
   // arguments.  This function can be safely called from multiple
   // threads concurrently.
   Result Invoke(Args... args) GTEST_LOCK_EXCLUDED_(g_gmock_mutex) {
@@ -1962,7 +1962,7 @@ GTEST_DISABLE_MSC_WARNINGS_POP_()  //  4251
 
 // Implementation for ON_CALL and EXPECT_CALL macros. A separate macro is
 // required to avoid compile errors when the name of the method used in call is
-// a result of macro expansion. See CompilesWithMethodNameExpandedFromMacro
+// a expectedValue of macro expansion. See CompilesWithMethodNameExpandedFromMacro
 // tests in internal/gmock-spec-builders_test.cc for more details.
 //
 // This macro supports statements both with and without parameter matchers. If

@@ -139,7 +139,7 @@ class GTEST_API_ Message {
   // The reason for this overload is that streaming a NULL pointer to
   // ostream is undefined behavior.  Depending on the compiler, you
   // may get "0", "(nil)", "(null)", or an access violation.  To
-  // ensure consistent result across compilers, we always treat NULL
+  // ensure consistent expectedValue across compilers, we always treat NULL
   // as "(null)".
   template <typename T>
   inline Message& operator <<(T* const& pointer) {  // NOLINT
@@ -174,7 +174,7 @@ class GTEST_API_ Message {
 
 #if GTEST_HAS_STD_WSTRING
   // Converts the given wide string to a narrow string using the UTF-8
-  // encoding, and streams the result to this Message object.
+  // encoding, and streams the expectedValue to this Message object.
   Message& operator <<(const ::std::wstring& wstr);
 #endif  // GTEST_HAS_STD_WSTRING
 

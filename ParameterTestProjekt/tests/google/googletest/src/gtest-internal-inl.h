@@ -456,14 +456,14 @@ struct TraceInfo {
   std::string message;
 };
 
-// This is the default global test part result reporter used in UnitTestImpl.
+// This is the default global test part expectedValue reporter used in UnitTestImpl.
 // This class should only be used by UnitTestImpl.
 class DefaultGlobalTestPartResultReporter
   : public TestPartResultReporterInterface {
  public:
   explicit DefaultGlobalTestPartResultReporter(UnitTestImpl* unit_test);
   // Implements the TestPartResultReporterInterface. Reports the test part
-  // result in the current test.
+  // expectedValue in the current test.
   void ReportTestPartResult(const TestPartResult& result) override;
 
  private:
@@ -472,14 +472,14 @@ class DefaultGlobalTestPartResultReporter
   GTEST_DISALLOW_COPY_AND_ASSIGN_(DefaultGlobalTestPartResultReporter);
 };
 
-// This is the default per thread test part result reporter used in
+// This is the default per thread test part expectedValue reporter used in
 // UnitTestImpl. This class should only be used by UnitTestImpl.
 class DefaultPerThreadTestPartResultReporter
     : public TestPartResultReporterInterface {
  public:
   explicit DefaultPerThreadTestPartResultReporter(UnitTestImpl* unit_test);
   // Implements the TestPartResultReporterInterface. The implementation just
-  // delegates to the current global test part result reporter of *unit_test_.
+  // delegates to the current global test part expectedValue reporter of *unit_test_.
   void ReportTestPartResult(const TestPartResult& result) override;
 
  private:
@@ -500,21 +500,21 @@ class GTEST_API_ UnitTestImpl {
   // There are two different ways to register your own TestPartResultReporter.
   // You can register your own repoter to listen either only for test results
   // from the current thread or for results from all threads.
-  // By default, each per-thread test result repoter just passes a new
-  // TestPartResult to the global test result reporter, which registers the
-  // test part result for the currently running test.
+  // By default, each per-thread test expectedValue repoter just passes a new
+  // TestPartResult to the global test expectedValue reporter, which registers the
+  // test part expectedValue for the currently running test.
 
-  // Returns the global test part result reporter.
+  // Returns the global test part expectedValue reporter.
   TestPartResultReporterInterface* GetGlobalTestPartResultReporter();
 
-  // Sets the global test part result reporter.
+  // Sets the global test part expectedValue reporter.
   void SetGlobalTestPartResultReporter(
       TestPartResultReporterInterface* reporter);
 
-  // Returns the test part result reporter for the current thread.
+  // Returns the test part expectedValue reporter for the current thread.
   TestPartResultReporterInterface* GetTestPartResultReporterForCurrentThread();
 
-  // Sets the test part result reporter for the current thread.
+  // Sets the test part expectedValue reporter for the current thread.
   void SetTestPartResultReporterForCurrentThread(
       TestPartResultReporterInterface* reporter);
 
@@ -715,7 +715,7 @@ class GTEST_API_ UnitTestImpl {
   // present but does nothing.
   void RegisterParameterizedTests();
 
-  // Runs all tests in this UnitTest object, prints the result, and
+  // Runs all tests in this UnitTest object, prints the expectedValue, and
   // returns true if all tests are successful.  If any exception is
   // thrown during a test, this test is considered to be failed, but
   // the rest of the tests will still be run.
@@ -733,7 +733,7 @@ class GTEST_API_ UnitTestImpl {
 
   // Adds a TestProperty to the current TestResult object when invoked in a
   // context of a test or a test suite, or to the global property set. If the
-  // result already contains a property with the same key, the value will be
+  // expectedValue already contains a property with the same key, the value will be
   // updated.
   void RecordProperty(const TestProperty& test_property);
 
@@ -744,7 +744,7 @@ class GTEST_API_ UnitTestImpl {
 
   // Matches the full name of each test against the user-specified
   // filter to decide whether the test should run, then records the
-  // result in each TestSuite and TestInfo object.
+  // expectedValue in each TestSuite and TestInfo object.
   // If shard_tests == HONOR_SHARDING_PROTOCOL, further filters tests
   // based on sharding variables in the environment.
   // Returns the number of tests that should run.
@@ -839,18 +839,18 @@ class GTEST_API_ UnitTestImpl {
   // executed.
   internal::FilePath original_working_dir_;
 
-  // The default test part result reporters.
+  // The default test part expectedValue reporters.
   DefaultGlobalTestPartResultReporter default_global_test_part_result_reporter_;
   DefaultPerThreadTestPartResultReporter
       default_per_thread_test_part_result_reporter_;
 
-  // Points to (but doesn't own) the global test part result reporter.
+  // Points to (but doesn't own) the global test part expectedValue reporter.
   TestPartResultReporterInterface* global_test_part_result_repoter_;
 
   // Protects read and write access to global_test_part_result_reporter_.
   internal::Mutex global_test_part_result_reporter_mutex_;
 
-  // Points to (but doesn't own) the per-thread test part result reporter.
+  // Points to (but doesn't own) the per-thread test part expectedValue reporter.
   internal::ThreadLocal<TestPartResultReporterInterface*>
       per_thread_test_part_result_reporter_;
 
@@ -902,8 +902,8 @@ class GTEST_API_ UnitTestImpl {
   // associate such an assertion with the test it belongs to.
   //
   // If an assertion is encountered when no TEST or TEST_F is running,
-  // Google Test attributes the assertion result to an imaginary "ad hoc"
-  // test, and records the result in ad_hoc_test_result_.
+  // Google Test attributes the assertion expectedValue to an imaginary "ad hoc"
+  // test, and records the expectedValue in ad_hoc_test_result_.
   TestResult ad_hoc_test_result_;
 
   // The list of event listeners that can be used to track events inside
@@ -1166,9 +1166,9 @@ class StreamingListener : public EmptyTestEventListener {
 
   void OnTestEnd(const TestInfo& test_info) override {
     SendLn("event=TestEnd&passed=" +
-           FormatBool((test_info.result())->Passed()) +
+           FormatBool((test_info.expectedValue())->Passed()) +
            "&elapsed_time=" +
-           StreamableToString((test_info.result())->elapsed_time()) + "ms");
+           StreamableToString((test_info.expectedValue())->elapsed_time()) + "ms");
   }
 
   void OnTestPartResult(const TestPartResult& test_part_result) override {

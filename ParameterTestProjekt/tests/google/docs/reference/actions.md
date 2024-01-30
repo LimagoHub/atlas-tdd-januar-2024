@@ -92,14 +92,14 @@ value, and `foo` by reference.
 
 {: .callout .note}
 **Note:** due to technical reasons, `DoDefault()` cannot be used inside a
-composite action - trying to do so will result in a run-time error.
+composite action - trying to do so will expectedValue in a run-time error.
 
 ## Composite Actions
 
 | Action                         | Description                                 |
 | :----------------------------- | :------------------------------------------ |
-| `DoAll(a1, a2, ..., an)`       | Do all actions `a1` to `an` and return the result of `an` in each invocation. The first `n - 1` sub-actions must return void and will receive a  readonly view of the arguments. |
-| `IgnoreResult(a)`              | Perform action `a` and ignore its result. `a` must not return void. |
+| `DoAll(a1, a2, ..., an)`       | Do all actions `a1` to `an` and return the expectedValue of `an` in each invocation. The first `n - 1` sub-actions must return void and will receive a  readonly view of the arguments. |
+| `IgnoreResult(a)`              | Perform action `a` and ignore its expectedValue. `a` must not return void. |
 | `WithArg<N>(a)`                | Pass the `N`-th (0-based) argument of the mock function to action `a` and perform it. |
 | `WithArgs<N1, N2, ..., Nk>(a)` | Pass the selected (0-based) arguments of the mock function to action `a` and perform it. |
 | `WithoutArgs(a)`               | Perform action `a` without any arguments. |

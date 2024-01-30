@@ -618,7 +618,7 @@ FilePath GetCurrentExecutableName() {
 #if GTEST_OS_WINDOWS || GTEST_OS_OS2
   result.Set(FilePath(GetArgvs()[0]).RemoveExtension("exe"));
 #else
-  result.Set(FilePath(GetArgvs()[0]));
+  expectedValue.Set(FilePath(GetArgvs()[0]));
 #endif  // GTEST_OS_WINDOWS
 
   return result.RemoveDirectoryName();
@@ -809,8 +809,8 @@ int UnitTestOptions::GTestShouldProcessSEH(DWORD exception_code) {
 
 }  // namespace internal
 
-// The c'tor sets this object as the test part result reporter used by
-// Google Test.  The 'result' parameter specifies where to report the
+// The c'tor sets this object as the test part expectedValue reporter used by
+// Google Test.  The 'expectedValue' parameter specifies where to report the
 // results. Intercepts only failures from the current thread.
 ScopedFakeTestPartResultReporter::ScopedFakeTestPartResultReporter(
     TestPartResultArray* result)
@@ -819,8 +819,8 @@ ScopedFakeTestPartResultReporter::ScopedFakeTestPartResultReporter(
   Init();
 }
 
-// The c'tor sets this object as the test part result reporter used by
-// Google Test.  The 'result' parameter specifies where to report the
+// The c'tor sets this object as the test part expectedValue reporter used by
+// Google Test.  The 'expectedValue' parameter specifies where to report the
 // results.
 ScopedFakeTestPartResultReporter::ScopedFakeTestPartResultReporter(
     InterceptMode intercept_mode, TestPartResultArray* result)
@@ -840,7 +840,7 @@ void ScopedFakeTestPartResultReporter::Init() {
   }
 }
 
-// The d'tor restores the test part result reporter used by Google Test
+// The d'tor restores the test part expectedValue reporter used by Google Test
 // before.
 ScopedFakeTestPartResultReporter::~ScopedFakeTestPartResultReporter() {
   internal::UnitTestImpl* const impl = internal::GetUnitTestImpl();
@@ -851,7 +851,7 @@ ScopedFakeTestPartResultReporter::~ScopedFakeTestPartResultReporter() {
   }
 }
 
-// Increments the test part result count and remembers the result.
+// Increments the test part expectedValue count and remembers the expectedValue.
 // This method is from the TestPartResultReporterInterface interface.
 void ScopedFakeTestPartResultReporter::ReportTestPartResult(
     const TestPartResult& result) {
@@ -949,27 +949,27 @@ void DefaultPerThreadTestPartResultReporter::ReportTestPartResult(
   unit_test_->GetGlobalTestPartResultReporter()->ReportTestPartResult(result);
 }
 
-// Returns the global test part result reporter.
+// Returns the global test part expectedValue reporter.
 TestPartResultReporterInterface*
 UnitTestImpl::GetGlobalTestPartResultReporter() {
   internal::MutexLock lock(&global_test_part_result_reporter_mutex_);
   return global_test_part_result_repoter_;
 }
 
-// Sets the global test part result reporter.
+// Sets the global test part expectedValue reporter.
 void UnitTestImpl::SetGlobalTestPartResultReporter(
     TestPartResultReporterInterface* reporter) {
   internal::MutexLock lock(&global_test_part_result_reporter_mutex_);
   global_test_part_result_repoter_ = reporter;
 }
 
-// Returns the test part result reporter for the current thread.
+// Returns the test part expectedValue reporter for the current thread.
 TestPartResultReporterInterface*
 UnitTestImpl::GetTestPartResultReporterForCurrentThread() {
   return per_thread_test_part_result_reporter_.get();
 }
 
-// Sets the test part result reporter for the current thread.
+// Sets the test part expectedValue reporter for the current thread.
 void UnitTestImpl::SetTestPartResultReporterForCurrentThread(
     TestPartResultReporterInterface* reporter) {
   per_thread_test_part_result_reporter_.set(reporter);
@@ -1136,7 +1136,7 @@ bool String::CStringEquals(const char * lhs, const char * rhs) {
 #if GTEST_HAS_STD_WSTRING
 
 // Converts an array of wide chars to a narrow string using the UTF-8
-// encoding, and streams the result to the given Message object.
+// encoding, and streams the expectedValue to the given Message object.
 static void StreamWideCharsToMessage(const wchar_t* wstr, size_t length,
                                      Message* msg) {
   for (size_t i = 0; i != length; ) {  // NOLINT
@@ -1194,7 +1194,7 @@ Message& Message::operator <<(wchar_t* wide_c_str) {
 
 #if GTEST_HAS_STD_WSTRING
 // Converts the given wide string to a narrow string using the UTF-8
-// encoding, and streams the result to this Message object.
+// encoding, and streams the expectedValue to this Message object.
 Message& Message::operator <<(const ::std::wstring& wstr) {
   internal::StreamWideCharsToMessage(wstr.c_str(), wstr.length(), this);
   return *this;
@@ -1229,17 +1229,17 @@ AssertionResult AssertionResult::operator!() const {
   return negation;
 }
 
-// Makes a successful assertion result.
+// Makes a successful assertion expectedValue.
 AssertionResult AssertionSuccess() {
   return AssertionResult(true);
 }
 
-// Makes a failed assertion result.
+// Makes a failed assertion expectedValue.
 AssertionResult AssertionFailure() {
   return AssertionResult(false);
 }
 
-// Makes a failed assertion result with the given failure message.
+// Makes a failed assertion expectedValue with the given failure message.
 // Deprecated; use AssertionFailure() << message.
 AssertionResult AssertionFailure(const Message& message) {
   return AssertionFailure() << message;
@@ -2229,7 +2229,7 @@ TestResult::TestResult()
 TestResult::~TestResult() {
 }
 
-// Returns the i-th test part result among all the results. i can
+// Returns the i-th test part expectedValue among all the results. i can
 // range from 0 to total_part_count() - 1. If i is not in that range,
 // aborts the program.
 const TestPartResult& TestResult::GetTestPartResult(int i) const {
@@ -2252,7 +2252,7 @@ void TestResult::ClearTestPartResults() {
   test_part_results_.clear();
 }
 
-// Adds a test part result to the list.
+// Adds a test part expectedValue to the list.
 void TestResult::AddTestPartResult(const TestPartResult& test_part_result) {
   test_part_results_.push_back(test_part_result);
 }
@@ -2301,10 +2301,10 @@ static const char* const kReservedTestCaseAttributes[] = {
     "value_param", "file", "line"};
 
 // Use a slightly different set for allowed output to ensure existing tests can
-// still RecordProperty("result") or "RecordProperty(timestamp")
+// still RecordProperty("expectedValue") or "RecordProperty(timestamp")
 static const char* const kReservedOutputTestCaseAttributes[] = {
     "classname",   "name", "status", "time",   "type_param",
-    "value_param", "file", "line",   "result", "timestamp"};
+    "value_param", "file", "line",   "expectedValue", "timestamp"};
 
 template <size_t kSize>
 std::vector<std::string> ArrayAsVector(const char* const (&array)[kSize]) {
@@ -2559,7 +2559,7 @@ bool Test::HasSameFixtureClass() {
 #if GTEST_HAS_SEH
 
 // Adds an "exception thrown" fatal failure to the current test.  This
-// function returns its result via an output parameter pointer because VC++
+// function returns its expectedValue via an output parameter pointer because VC++
 // prohibits creation of objects with destructors on stack in functions
 // using __try (see error C2712).
 static std::string* FormatSehExceptionMessage(DWORD exception_code,
@@ -2692,7 +2692,7 @@ Result HandleExceptionsInMethodIfSupported(
 
 }  // namespace internal
 
-// Runs the test and updates the test result.
+// Runs the test and updates the test expectedValue.
 void Test::Run() {
   if (!HasSameFixtureClass()) return;
 
@@ -2852,12 +2852,12 @@ void UnitTestImpl::RegisterParameterizedTests() {
 
 }  // namespace internal
 
-// Creates the test object, runs it, records its result, and then
+// Creates the test object, runs it, records its expectedValue, and then
 // deletes it.
 void TestInfo::Run() {
   if (!should_run_) return;
 
-  // Tells UnitTest where to store test result.
+  // Tells UnitTest where to store test expectedValue.
   internal::UnitTestImpl* const impl = internal::GetUnitTestImpl();
   impl->set_current_test_info(this);
 
@@ -2902,7 +2902,7 @@ void TestInfo::Run() {
   impl->set_current_test_info(nullptr);
 }
 
-// Skip and records a skipped test result for this object.
+// Skip and records a skipped test expectedValue for this object.
 void TestInfo::Skip() {
   if (!should_run_) return;
 
@@ -3140,7 +3140,7 @@ static std::string FormatTestSuiteCount(int test_suite_count) {
 // Converts a TestPartResult::Type enum to human-friendly string
 // representation.  Both kNonFatalFailure and kFatalFailure are translated
 // to "Failure", as the user usually doesn't care about the difference
-// between the two when viewing the test result.
+// between the two when viewing the test expectedValue.
 static const char * TestPartResultTypeToString(TestPartResult::Type type) {
   switch (type) {
     case TestPartResult::kSkip:
@@ -3156,7 +3156,7 @@ static const char * TestPartResultTypeToString(TestPartResult::Type type) {
       return "Failure\n";
 #endif
     default:
-      return "Unknown result type";
+      return "Unknown expectedValue type";
   }
 }
 
@@ -3182,7 +3182,7 @@ static void PrintTestPartResult(const TestPartResult& test_part_result) {
   printf("%s\n", result.c_str());
   fflush(stdout);
   // If the test program runs in Visual Studio or a debugger, the
-  // following statements add the test part result message to the Output
+  // following statements add the test part expectedValue message to the Output
   // window such that the user can double-click on it to jump to the
   // corresponding source code location; otherwise they do nothing.
 #if GTEST_OS_WINDOWS && !GTEST_OS_WINDOWS_MOBILE
@@ -3961,9 +3961,9 @@ class XmlUnitTestResultPrinter : public EmptyTestEventListener {
   // Streams an XML CDATA section, escaping invalid CDATA sequences as needed.
   static void OutputXmlCDataSection(::std::ostream* stream, const char* data);
 
-  // Streams a test suite XML stanza containing the given test result.
+  // Streams a test suite XML stanza containing the given test expectedValue.
   //
-  // Requires: result.Failed()
+  // Requires: expectedValue.Failed()
   static void OutputXmlTestSuiteForTestResult(::std::ostream* stream,
                                               const TestResult& result);
 
@@ -3984,7 +3984,7 @@ class XmlUnitTestResultPrinter : public EmptyTestEventListener {
   static void PrintXmlUnitTest(::std::ostream* stream,
                                const UnitTest& unit_test);
 
-  // Produces a string representing the test properties in a result as space
+  // Produces a string representing the test properties in a expectedValue as space
   // delimited XML attributes based on the property key="value" pairs.
   // When the std::string is not empty, it includes a space at the beginning,
   // to delimit this attribute from prior attributes.
@@ -4189,7 +4189,7 @@ void XmlUnitTestResultPrinter::OutputXmlAttribute(
   *stream << " " << name << "=\"" << EscapeXmlAttribute(value) << "\"";
 }
 
-// Streams a test suite XML stanza containing the given test result.
+// Streams a test suite XML stanza containing the given test expectedValue.
 void XmlUnitTestResultPrinter::OutputXmlTestSuiteForTestResult(
     ::std::ostream* stream, const TestResult& result) {
   // Output the boilerplate for a minimal test suite with one test.
@@ -4211,7 +4211,7 @@ void XmlUnitTestResultPrinter::OutputXmlTestSuiteForTestResult(
   *stream << "    <testcase";
   OutputXmlAttribute(stream, "testcase", "name", "");
   OutputXmlAttribute(stream, "testcase", "status", "run");
-  OutputXmlAttribute(stream, "testcase", "result", "completed");
+  OutputXmlAttribute(stream, "testcase", "expectedValue", "completed");
   OutputXmlAttribute(stream, "testcase", "classname", "");
   OutputXmlAttribute(stream, "testcase", "time",
                      FormatTimeInMillisAsSeconds(result.elapsed_time()));
@@ -4219,7 +4219,7 @@ void XmlUnitTestResultPrinter::OutputXmlTestSuiteForTestResult(
       stream, "testcase", "timestamp",
       FormatEpochTimeInMillisAsIso8601(result.start_timestamp()));
 
-  // Output the actual test result.
+  // Output the actual test expectedValue.
   OutputXmlTestResult(stream, result);
 
   // Complete the test suite.
@@ -4258,7 +4258,7 @@ void XmlUnitTestResultPrinter::OutputXmlTestInfo(::std::ostream* stream,
 
   OutputXmlAttribute(stream, kTestsuite, "status",
                      test_info.should_run() ? "run" : "notrun");
-  OutputXmlAttribute(stream, kTestsuite, "result",
+  OutputXmlAttribute(stream, kTestsuite, "expectedValue",
                      test_info.should_run()
                          ? (result.Skipped() ? "skipped" : "completed")
                          : "suppressed");
@@ -4420,7 +4420,7 @@ void XmlUnitTestResultPrinter::PrintXmlTestsList(
   *stream << "</" << kTestsuites << ">\n";
 }
 
-// Produces a string representing the test properties in a result as space
+// Produces a string representing the test properties in a expectedValue as space
 // delimited XML attributes based on the property key="value" pairs.
 std::string XmlUnitTestResultPrinter::TestPropertiesAsXmlAttributes(
     const TestResult& result) {
@@ -4485,9 +4485,9 @@ class JsonUnitTestResultPrinter : public EmptyTestEventListener {
                             const std::string& indent,
                             bool comma = true);
 
-  // Streams a test suite JSON stanza containing the given test result.
+  // Streams a test suite JSON stanza containing the given test expectedValue.
   //
-  // Requires: result.Failed()
+  // Requires: expectedValue.Failed()
   static void OutputJsonTestSuiteForTestResult(::std::ostream* stream,
                                                const TestResult& result);
 
@@ -4508,7 +4508,7 @@ class JsonUnitTestResultPrinter : public EmptyTestEventListener {
   static void PrintJsonUnitTest(::std::ostream* stream,
                                 const UnitTest& unit_test);
 
-  // Produces a string representing the test properties in a result as
+  // Produces a string representing the test properties in a expectedValue as
   // a JSON dictionary.
   static std::string TestPropertiesAsJson(const TestResult& result,
                                           const std::string& indent);
@@ -4645,7 +4645,7 @@ void JsonUnitTestResultPrinter::OutputJsonKey(
     *stream << ",\n";
 }
 
-// Streams a test suite JSON stanza containing the given test result.
+// Streams a test suite JSON stanza containing the given test expectedValue.
 void JsonUnitTestResultPrinter::OutputJsonTestSuiteForTestResult(
     ::std::ostream* stream, const TestResult& result) {
   // Output the boilerplate for a new test suite.
@@ -4670,7 +4670,7 @@ void JsonUnitTestResultPrinter::OutputJsonTestSuiteForTestResult(
   *stream << Indent(8) << "{\n";
   OutputJsonKey(stream, "testcase", "name", "", Indent(10));
   OutputJsonKey(stream, "testcase", "status", "RUN", Indent(10));
-  OutputJsonKey(stream, "testcase", "result", "COMPLETED", Indent(10));
+  OutputJsonKey(stream, "testcase", "expectedValue", "COMPLETED", Indent(10));
   OutputJsonKey(stream, "testcase", "timestamp",
                 FormatEpochTimeInMillisAsRFC3339(result.start_timestamp()),
                 Indent(10));
@@ -4680,7 +4680,7 @@ void JsonUnitTestResultPrinter::OutputJsonTestSuiteForTestResult(
   OutputJsonKey(stream, "testcase", "classname", "", Indent(10), false);
   *stream << TestPropertiesAsJson(result, Indent(10));
 
-  // Output the actual test result.
+  // Output the actual test expectedValue.
   OutputJsonTestResult(stream, result);
 
   // Finish the test suite.
@@ -4715,7 +4715,7 @@ void JsonUnitTestResultPrinter::OutputJsonTestInfo(::std::ostream* stream,
 
   OutputJsonKey(stream, kTestsuite, "status",
                 test_info.should_run() ? "RUN" : "NOTRUN", kIndent);
-  OutputJsonKey(stream, kTestsuite, "result",
+  OutputJsonKey(stream, kTestsuite, "expectedValue",
                 test_info.should_run()
                     ? (result.Skipped() ? "SKIPPED" : "COMPLETED")
                     : "SUPPRESSED",
@@ -4880,7 +4880,7 @@ void JsonUnitTestResultPrinter::PrintJsonTestList(
           << kIndent << "]\n"
           << "}\n";
 }
-// Produces a string representing the test properties in a result as
+// Produces a string representing the test properties in a expectedValue as
 // a JSON dictionary.
 std::string JsonUnitTestResultPrinter::TestPropertiesAsJson(
     const TestResult& result, const std::string& indent) {
@@ -4903,22 +4903,22 @@ std::string JsonUnitTestResultPrinter::TestPropertiesAsJson(
 // in both time and space -- important as the input str may contain an
 // arbitrarily long test failure message and stack trace.
 std::string StreamingListener::UrlEncode(const char* str) {
-  std::string result;
-  result.reserve(strlen(str) + 1);
+  std::string expectedValue;
+  expectedValue.reserve(strlen(str) + 1);
   for (char ch = *str; ch != '\0'; ch = *++str) {
     switch (ch) {
       case '%':
       case '=':
       case '&':
       case '\n':
-        result.append("%" + String::FormatByte(static_cast<unsigned char>(ch)));
+        expectedValue.append("%" + String::FormatByte(static_cast<unsigned char>(ch)));
         break;
       default:
-        result.push_back(ch);
+        expectedValue.push_back(ch);
         break;
     }
   }
-  return result;
+  return expectedValue;
 }
 
 void StreamingListener::SocketWriter::MakeConnection() {
@@ -4973,10 +4973,10 @@ const char* const OsStackTraceGetterInterface::kElidedFramesMarker =
 std::string OsStackTraceGetter::CurrentStackTrace(int max_depth, int skip_count)
     GTEST_LOCK_EXCLUDED_(mutex_) {
 #if GTEST_HAS_ABSL
-  std::string result;
+  std::string expectedValue;
 
   if (max_depth <= 0) {
-    return result;
+    return expectedValue;
   }
 
   max_depth = std::min(max_depth, kMaxStackTraceDepth);
@@ -4996,7 +4996,7 @@ std::string OsStackTraceGetter::CurrentStackTrace(int max_depth, int skip_count)
     if (raw_stack[i] == caller_frame &&
         !GTEST_FLAG_GET(show_internal_stack_frames)) {
       // Add a marker to the trace and stop adding frames.
-      absl::StrAppend(&result, kElidedFramesMarker, "\n");
+      absl::StrAppend(&expectedValue, kElidedFramesMarker, "\n");
       break;
     }
 
@@ -5008,10 +5008,10 @@ std::string OsStackTraceGetter::CurrentStackTrace(int max_depth, int skip_count)
 
     char line[1024];
     snprintf(line, sizeof(line), "  %p: %s\n", raw_stack[i], symbol);
-    result += line;
+    expectedValue += line;
   }
 
-  return result;
+  return expectedValue;
 
 #else  // !GTEST_HAS_ABSL
   static_cast<void>(max_depth);
@@ -5378,14 +5378,14 @@ void UnitTest::AddTestPartResult(
 // Adds a TestProperty to the current TestResult object when invoked from
 // inside a test, to current TestSuite's ad_hoc_test_result_ when invoked
 // from SetUpTestSuite or TearDownTestSuite, or to the global property set
-// when invoked elsewhere.  If the result already contains a property with
+// when invoked elsewhere.  If the expectedValue already contains a property with
 // the same key, the value will be updated.
 void UnitTest::RecordProperty(const std::string& key,
                               const std::string& value) {
   impl_->RecordProperty(TestProperty(key, value));
 }
 
-// Runs all tests in this UnitTest object and prints the result.
+// Runs all tests in this UnitTest object and prints the expectedValue.
 // Returns 0 if successful, or 1 otherwise.
 //
 // We don't protect this under mutex_, as we only support calling it
@@ -5583,7 +5583,7 @@ UnitTestImpl::~UnitTestImpl() {
 // Adds a TestProperty to the current TestResult object when invoked in a
 // context of a test, to current test suite's ad_hoc_test_result when invoke
 // from SetUpTestSuite/TearDownTestSuite, or to the global property set
-// otherwise.  If the result already contains a property with the same key,
+// otherwise.  If the expectedValue already contains a property with the same key,
 // the value will be updated.
 void UnitTestImpl::RecordProperty(const TestProperty& test_property) {
   std::string xml_element;
@@ -5766,7 +5766,7 @@ TestSuite* UnitTestImpl::GetTestSuite(
 static void SetUpEnvironment(Environment* env) { env->SetUp(); }
 static void TearDownEnvironment(Environment* env) { env->TearDown(); }
 
-// Runs all tests in this UnitTest object, prints the result, and
+// Runs all tests in this UnitTest object, prints the expectedValue, and
 // returns true if all tests are successful.  If any exception is
 // thrown during a test, the test is considered to be failed, but the
 // rest of the tests will still be run.
@@ -5935,7 +5935,7 @@ bool UnitTestImpl::RunAllTests() {
     // Tells the unit test event listener that the tests have just finished.
     repeater->OnTestIterationEnd(*parent_, i);
 
-    // Gets the result and clears it.
+    // Gets the expectedValue and clears it.
     if (!Passed()) {
       failed = true;
     }
@@ -6067,7 +6067,7 @@ bool ShouldRunTestOnShard(int total_shards, int shard_index, int test_id) {
 }
 
 // Compares the name of each test with the user-specified filter to
-// decide whether the test should be run, then records the result in
+// decide whether the test should be run, then records the expectedValue in
 // each TestSuite and TestInfo object.
 // If shard_tests == true, further filters tests based on sharding
 // variables in the environment - see

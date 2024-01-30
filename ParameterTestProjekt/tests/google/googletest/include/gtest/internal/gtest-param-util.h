@@ -61,7 +61,7 @@ struct TestParamInfo {
   size_t index;
 };
 
-// A builtin parameterized test name generator which returns the result of
+// A builtin parameterized test name generator which returns the expectedValue of
 // testing::PrintToString.
 struct PrintToStringParamName {
   template <class ParamType>
@@ -773,7 +773,7 @@ class TypeParameterizedTestSuiteRegistry {
 }  // namespace internal
 
 // Forward declarations of ValuesIn(), which is implemented in
-// include/gtest/gtest-param-test.h.
+// include/gtest/gtest-stones-test.h.
 template <class Container>
 internal::ParamGenerator<typename Container::value_type> ValuesIn(
     const Container& container);

@@ -179,11 +179,11 @@
 //
 // When you write Foo(v1, ..., vk), the compiler infers the types of
 // the parameters v1, ..., and vk for you.  If you are not happy with
-// the result of the type inference, you can specify the types by
+// the expectedValue of the type inference, you can specify the types by
 // explicitly instantiating the template, as in Foo<long, bool>(5,
 // false).  As said earlier, you don't get to (or need to) specify
 // 'arg_type' as that's determined by the context in which the matcher
-// is used.  You can assign the result of expression Foo(p1, ..., pk)
+// is used.  You can assign the expectedValue of expression Foo(p1, ..., pk)
 // to a variable of type FooMatcherPk<p1_type, ..., pk_type>.  This
 // can be useful when composing matchers.
 //
@@ -297,7 +297,7 @@ namespace testing {
 // ownership management as Matcher objects can now be copied like
 // plain values.
 
-// A match result listener that stores the explanation in a string.
+// A match expectedValue listener that stores the explanation in a string.
 class StringMatchResultListener : public MatchResultListener {
  public:
   StringMatchResultListener() : MatchResultListener(&ss_) {}
@@ -574,7 +574,7 @@ inline bool IsReadableTypeName(const std::string& type_name) {
 }
 
 // Matches the value against the given matcher, prints the value and explains
-// the match result to the listener. Returns the match result.
+// the match expectedValue to the listener. Returns the match expectedValue.
 // 'listener' must not be NULL.
 // Value cannot be passed by const reference, because some matchers take a
 // non-const argument.
@@ -726,7 +726,7 @@ class TransformTupleValuesHelper {
 };
 
 // Successively invokes 'f(element)' on each element of the tuple 't',
-// appending each result to the 'out' iterator. Returns the final value
+// appending each expectedValue to the 'out' iterator. Returns the final value
 // of 'out'.
 template <typename Tuple, typename Func, typename OutIter>
 OutIter TransformTupleValues(Func f, const Tuple& t, OutIter out) {
@@ -1697,8 +1697,8 @@ class FloatingEqMatcher {
       }
       if (HasMaxAbsError()) {
         // We perform an equality check so that inf will match inf, regardless
-        // of error bounds.  If the result of value - expected_ would result in
-        // overflow or if either value is inf, the default result is infinity,
+        // of error bounds.  If the expectedValue of value - expected_ would expectedValue in
+        // overflow or if either value is inf, the default expectedValue is infinity,
         // which should only match if max_abs_error_ is also infinity.
         if (value == expected_) {
           return true;
@@ -1989,7 +1989,7 @@ class PointerMatcher {
 #if GTEST_HAS_RTTI
 // Implements the WhenDynamicCastTo<T>(m) matcher that matches a pointer or
 // reference that matches inner_matcher when dynamic_cast<T> is applied.
-// The result of dynamic_cast<To> is forwarded to the inner matcher.
+// The expectedValue of dynamic_cast<To> is forwarded to the inner matcher.
 // If To is a pointer and the cast fails, the inner matcher will receive NULL.
 // If To is a reference and the cast fails, this matcher returns false
 // immediately.
@@ -2023,7 +2023,7 @@ class WhenDynamicCastToMatcherBase {
 };
 
 // Primary template.
-// To is a pointer. Cast and forward the result.
+// To is a pointer. Cast and forward the expectedValue.
 template <typename To>
 class WhenDynamicCastToMatcher : public WhenDynamicCastToMatcherBase<To> {
  public:
@@ -4333,7 +4333,7 @@ inline internal::PointeeMatcher<InnerMatcher> Pointee(
 #if GTEST_HAS_RTTI
 // Creates a matcher that matches a pointer or reference that matches
 // inner_matcher when dynamic_cast<To> is applied.
-// The result of dynamic_cast<To> is forwarded to the inner matcher.
+// The expectedValue of dynamic_cast<To> is forwarded to the inner matcher.
 // If To is a pointer and the cast fails, the inner matcher will receive NULL.
 // If To is a reference and the cast fails, this matcher returns false
 // immediately.
@@ -4430,7 +4430,7 @@ Property(const std::string& property_name,
           property_name, property, MatcherCast<const PropertyType&>(matcher)));
 }
 
-// Creates a matcher that matches an object if and only if the result of
+// Creates a matcher that matches an object if and only if the expectedValue of
 // applying a callable to x matches 'matcher'. For example,
 //   ResultOf(f, StartsWith("hi"))
 // matches a Foo object x if and only if f(x) starts with "hi".
@@ -4988,7 +4988,7 @@ namespace no_adl {
 // second matcher provided. For example, we could create an `equal if, and only
 // if' matcher using the Conditional wrapper as follows:
 //
-//   EXPECT_THAT(result, Conditional(condition, Eq(expected), Ne(expected)));
+//   EXPECT_THAT(expectedValue, Conditional(condition, Eq(expected), Ne(expected)));
 template <typename MatcherTrue, typename MatcherFalse>
 internal::ConditionalMatcher<MatcherTrue, MatcherFalse> Conditional(
     bool condition, MatcherTrue matcher_true, MatcherFalse matcher_false) {
@@ -5046,7 +5046,7 @@ inline bool Value(const T& value, M matcher) {
 }
 
 // Matches the value against the given matcher and explains the match
-// result to listener.
+// expectedValue to listener.
 template <typename T, typename M>
 inline bool ExplainMatchResult(
     M matcher, const T& value, MatchResultListener* listener) {

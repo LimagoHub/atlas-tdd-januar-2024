@@ -70,7 +70,7 @@
 //
 //   foo ## __LINE__
 //
-// will result in the token foo__LINE__, instead of foo followed by
+// will expectedValue in the token foo__LINE__, instead of foo followed by
 // the current line number.  For more details, see
 // http://www.parashift.com/c++-faq-lite/misc-technical-issues.html#faq-39.6
 #define GTEST_CONCAT_TOKEN_(foo, bar) GTEST_CONCAT_TOKEN_IMPL_(foo, bar)
@@ -440,7 +440,7 @@ TypeId GetTypeId() {
 
 // Returns the type ID of ::testing::Test.  Always call this instead
 // of GetTypeId< ::testing::Test>() to get the type ID of
-// ::testing::Test, as the latter may give the wrong result due to a
+// ::testing::Test, as the latter may give the wrong expectedValue due to a
 // suspected linker bug when compiling Google Test as a Mac OS X
 // framework.
 GTEST_API_ TypeId GetTestTypeId();

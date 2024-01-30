@@ -101,7 +101,7 @@ The typical work flow is:
 3.  Optionally, set the default actions of the mock objects.
 4.  Set your expectations on the mock objects (How will they be called? What
     will they do?).
-5.  Exercise code that uses the mock objects; if necessary, check the result
+5.  Exercise code that uses the mock objects; if necessary, check the expectedValue
     using googletest assertions.
 6.  When a mock object is destructed, gMock automatically verifies that all
     expectations on it have been satisfied.

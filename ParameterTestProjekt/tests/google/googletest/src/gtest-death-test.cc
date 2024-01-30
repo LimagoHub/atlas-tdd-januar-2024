@@ -190,9 +190,9 @@ KilledBySignal::KilledBySignal(int signum) : signum_(signum) {
 bool KilledBySignal::operator()(int exit_status) const {
 #  if defined(GTEST_KILLED_BY_SIGNAL_OVERRIDE_)
   {
-    bool result;
-    if (GTEST_KILLED_BY_SIGNAL_OVERRIDE_(signum_, exit_status, &result)) {
-      return result;
+    bool expectedValue;
+    if (GTEST_KILLED_BY_SIGNAL_OVERRIDE_(signum_, exit_status, &expectedValue)) {
+      return expectedValue;
     }
   }
 #  endif  // defined(GTEST_KILLED_BY_SIGNAL_OVERRIDE_)
@@ -427,7 +427,7 @@ class DeathTestImpl : public DeathTest {
   int write_fd() const { return write_fd_; }
   void set_write_fd(int fd) { write_fd_ = fd; }
 
-  // Called in the parent process only. Reads the result code of the death
+  // Called in the parent process only. Reads the expectedValue code of the death
   // test child process via a pipe, interprets it to set the outcome_
   // member, and closes read_fd_.  Outputs diagnostics and terminates in
   // case of unexpected codes.
@@ -458,7 +458,7 @@ class DeathTestImpl : public DeathTest {
   int write_fd_;
 };
 
-// Called in the parent process only. Reads the result code of the death
+// Called in the parent process only. Reads the expectedValue code of the death
 // test child process via a pipe, interprets it to set the outcome_
 // member, and closes read_fd_.  Outputs diagnostics and terminates in
 // case of unexpected codes.
@@ -976,7 +976,7 @@ DeathTest::TestRole FuchsiaDeathTest::AssumeRole() {
   const InternalRunDeathTestFlag* const flag =
       impl->internal_run_death_test_flag();
   const TestInfo* const info = impl->current_test_info();
-  const int death_test_index = info->result()->death_test_count();
+  const int death_test_index = info->expectedValue()->death_test_count();
 
   if (flag != nullptr) {
     // ParseInternalRunDeathTestFlag() has performed all the necessary
@@ -1273,18 +1273,18 @@ static int ExecDeathTestChildMain(void* child_arg) {
 // StackLowerThanAddress into StackGrowsDown, which then doesn't give
 // correct answer.
 static void StackLowerThanAddress(const void* ptr,
-                                  bool* result) GTEST_NO_INLINE_;
+                                  bool* expectedValue) GTEST_NO_INLINE_;
 // Make sure sanitizers do not tamper with the stack here.
 // Ideally, we want to use `__builtin_frame_address` instead of a local variable
 // address with sanitizer disabled, but it does not work when the
 // compiler optimizes the stack frame out, which happens on PowerPC targets.
 // HWAddressSanitizer add a random tag to the MSB of the local variable address,
-// making comparison result unpredictable.
+// making comparison expectedValue unpredictable.
 GTEST_ATTRIBUTE_NO_SANITIZE_ADDRESS_
 GTEST_ATTRIBUTE_NO_SANITIZE_HWADDRESS_
-static void StackLowerThanAddress(const void* ptr, bool* result) {
+static void StackLowerThanAddress(const void* ptr, bool* expectedValue) {
   int dummy = 0;
-  *result = std::less<const void*>()(&dummy, ptr);
+  *expectedValue = std::less<const void*>()(&dummy, ptr);
 }
 
 // Make sure AddressSanitizer does not tamper with the stack here.
@@ -1292,9 +1292,9 @@ GTEST_ATTRIBUTE_NO_SANITIZE_ADDRESS_
 GTEST_ATTRIBUTE_NO_SANITIZE_HWADDRESS_
 static bool StackGrowsDown() {
   int dummy = 0;
-  bool result;
-  StackLowerThanAddress(&dummy, &result);
-  return result;
+  bool expectedValue;
+  StackLowerThanAddress(&dummy, &expectedValue);
+  return expectedValue;
 }
 #  endif  // GTEST_HAS_CLONE
 
@@ -1409,7 +1409,7 @@ DeathTest::TestRole ExecDeathTest::AssumeRole() {
   const InternalRunDeathTestFlag* const flag =
       impl->internal_run_death_test_flag();
   const TestInfo* const info = impl->current_test_info();
-  const int death_test_index = info->result()->death_test_count();
+  const int death_test_index = info->expectedValue()->death_test_count();
 
   if (flag != nullptr) {
     set_write_fd(flag->write_fd());

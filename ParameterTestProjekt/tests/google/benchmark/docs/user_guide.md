@@ -10,7 +10,7 @@
 
 [Running a Subset of Benchmarks](#running-a-subset-of-benchmarks)
 
-[Result Comparison](#result-comparison)
+[Result Comparison](#expectedValue-comparison)
 
 [Extra Context](#extra-context)
 
@@ -178,7 +178,7 @@ BM_memcpy/32          12 ns         12 ns   54687500
 BM_memcpy/32k       1834 ns       1837 ns     357143
 ```
 
-<a name="result-comparison" />
+<a name="expectedValue-comparison" />
 
 ## Result comparison
 
@@ -220,7 +220,7 @@ error message.
 When the benchmark binary is executed, each benchmark function is run serially.
 The number of iterations to run is determined dynamically by running the
 benchmark a few times and measuring the time taken and ensuring that the
-ultimate result will be statistically stable. As such, faster benchmark
+ultimate expectedValue will be statistically stable. As such, faster benchmark
 functions will be run for more iterations than slower benchmark functions, and
 the number of iterations is thus reported.
 
@@ -597,7 +597,7 @@ the resulting sum is the value which will be shown for the benchmark.
 The `Counter` constructor accepts three parameters: the value as a `double`
 ; a bit flag which allows you to show counters as rates, and/or as per-thread
 iteration, and/or as per-thread averages, and/or iteration invariants,
-and/or finally inverting the result; and a flag specifying the 'unit' - i.e.
+and/or finally inverting the expectedValue; and a flag specifying the 'unit' - i.e.
 is 1k a 1000 (default, `benchmark::Counter::OneK::kIs1000`), or 1024
 (`benchmark::Counter::OneK::kIs1024`)?
 
@@ -611,7 +611,7 @@ is 1k a 1000 (default, `benchmark::Counter::OneK::kIs1000`), or 1024
   state.counters["FooRate"] = Counter(numFoos, benchmark::Counter::kIsRate);
 
   // Set the counter as a rate. It will be presented divided
-  // by the duration of the benchmark, and the result inverted.
+  // by the duration of the benchmark, and the expectedValue inverted.
   // Meaning: how many seconds it takes to process one 'foo'?
   state.counters["FooInvRate"] = Counter(numFoos, benchmark::Counter::kIsRate | benchmark::Counter::kInvert);
 
@@ -886,13 +886,13 @@ static void BM_test(benchmark::State& state) {
 }
 ```
 
-`DoNotOptimize(<expr>)` forces the  *result* of `<expr>` to be stored in either
+`DoNotOptimize(<expr>)` forces the  *expectedValue* of `<expr>` to be stored in either
 memory or a register. For GNU based compilers it acts as read/write barrier
 for global memory. More specifically it forces the compiler to flush pending
 writes to memory and reload any other values as necessary.
 
 Note that `DoNotOptimize(<expr>)` does not prevent optimizations on `<expr>`
-in any way. `<expr>` may even be removed entirely when the result is already
+in any way. `<expr>` may even be removed entirely when the expectedValue is already
 known. For example:
 
 ```c++
@@ -932,8 +932,8 @@ Note that `ClobberMemory()` is only available for GNU or MSVC based compilers.
 
 ## Statistics: Reporting the Mean, Median and Standard Deviation / Coefficient of variation of Repeated Benchmarks
 
-By default each benchmark is run once and that single result is reported.
-However benchmarks are often noisy and a single result may not be representative
+By default each benchmark is run once and that single expectedValue is reported.
+However benchmarks are often noisy and a single expectedValue may not be representative
 of the overall behavior. For this reason it's possible to repeatedly rerun the
 benchmark.
 
@@ -946,7 +946,7 @@ of the runs will be reported.
 Additionally the `--benchmark_report_aggregates_only={true|false}`,
 `--benchmark_display_aggregates_only={true|false}` flags or
 `ReportAggregatesOnly(bool)`, `DisplayAggregatesOnly(bool)` functions can be
-used to change how repeated tests are reported. By default the result of each
+used to change how repeated tests are reported. By default the expectedValue of each
 repeated run is reported. When `report aggregates only` option is `true`,
 only the aggregates (i.e. mean, median, standard deviation and coefficient
 of variation, maybe complexity measurements if they were requested) of the runs

@@ -52,7 +52,7 @@ satisfactory: you have to use different macros for different arities, and it
 feels more like Lisp than C++. The `::testing::AssertionResult` class solves
 this problem.
 
-An `AssertionResult` object represents the result of an assertion (whether it's
+An `AssertionResult` object represents the expectedValue of an assertion (whether it's
 a success or a failure, and an associated message). You can create an
 `AssertionResult` using one of these factory functions:
 
@@ -245,8 +245,8 @@ initialize return object of type 'bool' with an rvalue of type 'void'"` or
 
 If you need to use fatal assertions in a function that returns non-void, one
 option is to make the function return the value in an out parameter instead. For
-example, you can rewrite `T2 Foo(T1 x)` to `void Foo(T1 x, T2* result)`. You
-need to make sure that `*result` contains some sensible value even when the
+example, you can rewrite `T2 Foo(T1 x)` to `void Foo(T1 x, T2* expectedValue)`. You
+need to make sure that `*expectedValue` contains some sensible value even when the
 function returns prematurely. As the function now returns `void`, you can use
 any assertion inside of it.
 
@@ -659,7 +659,7 @@ For example,
 23: }
 ```
 
-could result in messages like these:
+could expectedValue in messages like these:
 
 ```none
 path/to/foo_test.cc:11: Failure
@@ -732,9 +732,9 @@ The following code can turn ASSERT-failure into an exception:
 
 ```c++
 class ThrowListener : public testing::EmptyTestEventListener {
-  void OnTestPartResult(const testing::TestPartResult& result) override {
-    if (result.type() == testing::TestPartResult::kFatalFailure) {
-      throw testing::AssertionException(result);
+  void OnTestPartResult(const testing::TestPartResult& expectedValue) override {
+    if (expectedValue.type() == testing::TestPartResult::kFatalFailure) {
+      throw testing::AssertionException(expectedValue);
     }
   }
 };
@@ -762,7 +762,7 @@ Fatal assertion                       | Nonfatal assertion                    | 
 `ASSERT_NO_FATAL_FAILURE(statement);` | `EXPECT_NO_FATAL_FAILURE(statement);` | `statement` doesn't generate any new fatal failures in the current thread.
 
 Only failures in the thread that executes the assertion are checked to determine
-the result of this type of assertions. If `statement` creates new threads,
+the expectedValue of this type of assertions. If `statement` creates new threads,
 failures in these threads are ignored.
 
 Examples:
@@ -1073,7 +1073,7 @@ the Testing Reference.
 
 For example, the following statement will instantiate tests from the `FooTest`
 test suite each with parameter values `"meeny"`, `"miny"`, and `"moe"` using the
-[`Values`](reference/testing.md#param-generators) parameter generator:
+[`Values`](reference/testing.md#stones-generators) parameter generator:
 
 ```c++
 INSTANTIATE_TEST_SUITE_P(MeenyMinyMoe,
@@ -1088,7 +1088,7 @@ function scope.
 The first argument to `INSTANTIATE_TEST_SUITE_P` is a unique name for the
 instantiation of the test suite. The next argument is the name of the test
 pattern, and the last is the
-[parameter generator](reference/testing.md#param-generators).
+[parameter generator](reference/testing.md#stones-generators).
 
 You can instantiate a test pattern more than once, so to distinguish different
 instances of the pattern, the instantiation name is added as a prefix to the
@@ -1106,7 +1106,7 @@ You can use these names in [`--gtest_filter`](#running-a-subset-of-the-tests).
 
 The following statement will instantiate all tests from `FooTest` again, each
 with parameter values `"cat"` and `"dog"` using the
-[`ValuesIn`](reference/testing.md#param-generators) parameter generator:
+[`ValuesIn`](reference/testing.md#stones-generators) parameter generator:
 
 ```c++
 const char* pets[] = {"cat", "dog"};
@@ -1212,8 +1212,8 @@ INSTANTIATE_TEST_SUITE_P(
         testing::Values("A", "B")),
     [](const testing::TestParamInfo<MyTestSuite::ParamType>& info) {
       std::string name = absl::StrCat(
-          std::get<0>(info.param) == MyType::MY_FOO ? "Foo" : "Bar",
-          std::get<1>(info.param));
+          std::get<0>(info.stones) == MyType::MY_FOO ? "Foo" : "Bar",
+          std::get<1>(info.stones));
       absl::c_replace_if(name, [](char c) { return !std::isalnum(c); }, '_');
       return name;
     });
@@ -1505,7 +1505,7 @@ current thread whose message contains the given `substring`, or use
 
 if you are expecting a non-fatal (e.g. `EXPECT_*`) failure.
 
-Only failures in the current thread are checked to determine the result of this
+Only failures in the current thread are checked to determine the expectedValue of this
 type of expectations. If `statement` creates new threads, failures in these
 threads are also ignored. If you want to catch failures in other threads as
 well, use one of the following macros instead:
@@ -1656,7 +1656,7 @@ argument. The following argument types are used:
 *   TestSuite has information about a test suite, which can contain one or more
     tests,
 *   TestInfo contains the state of a test, and
-*   TestPartResult represents the result of a test assertion.
+*   TestPartResult represents the expectedValue of a test assertion.
 
 An event handler function can examine the argument it receives to find out
 interesting information about the event and the test program's state.
@@ -1708,7 +1708,7 @@ int main(int argc, char** argv) {
 }
 ```
 
-There's only one problem: the default test result printer is still in effect, so
+There's only one problem: the default test expectedValue printer is still in effect, so
 its output will mingle with the output from your minimalist printer. To suppress
 the default printer, just release it from the event listener list and delete it.
 You can do so by adding one line:
@@ -1871,7 +1871,7 @@ disabled tests to run.
 
 ### Repeating the Tests
 
-Once in a while you'll run into a test whose result is hit-or-miss. Perhaps it
+Once in a while you'll run into a test whose expectedValue is hit-or-miss. Perhaps it
 will fail only 1% of the time, making it rather hard to reproduce the bug under
 a debugger. This can be a major source of frustration.
 

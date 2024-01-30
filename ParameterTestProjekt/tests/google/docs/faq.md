@@ -153,7 +153,7 @@ the types fully qualified. The new definition of `ProtocolMessageEquals` and
 
 Death tests (`EXPECT_DEATH`, etc) are executed in a sub-process s.t. the
 expected crash won't kill the test program (i.e. the parent process). As a
-result, any in-memory side effects they incur are observable in their respective
+expectedValue, any in-memory side effects they incur are observable in their respective
 sub-processes, but not in the parent process. You can think of them as running
 in a parallel universe, more or less.
 

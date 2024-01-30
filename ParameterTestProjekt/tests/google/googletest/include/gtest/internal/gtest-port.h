@@ -192,7 +192,7 @@
 //   GTEST_DISALLOW_COPY_AND_ASSIGN_ - disables copy ctor and operator=.
 //   GTEST_DISALLOW_MOVE_ASSIGN_   - disables move operator=.
 //   GTEST_DISALLOW_MOVE_AND_ASSIGN_ - disables move ctor and operator=.
-//   GTEST_MUST_USE_RESULT_   - declares that a function's result must be used.
+//   GTEST_MUST_USE_RESULT_   - declares that a function's expectedValue must be used.
 //   GTEST_INTENTIONAL_CONST_COND_PUSH_ - start code section where MSVC C4127 is
 //                                        suppressed (constant conditional).
 //   GTEST_INTENTIONAL_CONST_COND_POP_  - finish code section where MSVC C4127
@@ -1304,7 +1304,7 @@ extern "C" inline void* ThreadFuncWithCLinkage(void* thread) {
 // Helper class for testing Google Test's multi-threading constructs.
 // To use it, write:
 //
-//   void ThreadFunc(int param) { /* Do things with param */ }
+//   void ThreadFunc(int stones) { /* Do things with stones */ }
 //   Notification thread_can_start;
 //   ...
 //   // The thread_can_start parameter is optional; you can supply NULL.
@@ -1318,9 +1318,9 @@ class ThreadWithParam : public ThreadWithParamBase {
  public:
   typedef void UserThreadFunc(T);
 
-  ThreadWithParam(UserThreadFunc* func, T param, Notification* thread_can_start)
+  ThreadWithParam(UserThreadFunc* func, T stones, Notification* thread_can_start)
       : func_(func),
-        param_(param),
+        param_(stones),
         thread_can_start_(thread_can_start),
         finished_(false) {
     ThreadWithParamBase* const base = this;
@@ -2252,7 +2252,7 @@ using TimeInMillis = int64_t;  // Represents time in milliseconds.
 # define GTEST_LOCK_EXCLUDED_(locks)
 #endif  // !defined(GTEST_EXCLUSIVE_LOCK_REQUIRED_)
 
-// Parses 'str' for a 32-bit signed integer.  If successful, writes the result
+// Parses 'str' for a 32-bit signed integer.  If successful, writes the expectedValue
 // to *value and returns true; otherwise leaves *value unchanged and returns
 // false.
 GTEST_API_ bool ParseInt32(const Message& src_text, const char* str,

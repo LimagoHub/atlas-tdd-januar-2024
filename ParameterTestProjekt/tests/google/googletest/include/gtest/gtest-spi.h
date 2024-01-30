@@ -59,8 +59,8 @@ class GTEST_API_ ScopedFakeTestPartResultReporter
     INTERCEPT_ALL_THREADS           // Intercepts all failures.
   };
 
-  // The c'tor sets this object as the test part result reporter used
-  // by Google Test.  The 'result' parameter specifies where to report the
+  // The c'tor sets this object as the test part expectedValue reporter used
+  // by Google Test.  The 'expectedValue' parameter specifies where to report the
   // results. This reporter will only catch failures generated in the current
   // thread. DEPRECATED
   explicit ScopedFakeTestPartResultReporter(TestPartResultArray* result);
@@ -69,7 +69,7 @@ class GTEST_API_ ScopedFakeTestPartResultReporter
   ScopedFakeTestPartResultReporter(InterceptMode intercept_mode,
                                    TestPartResultArray* result);
 
-  // The d'tor restores the previous test part result reporter.
+  // The d'tor restores the previous test part expectedValue reporter.
   ~ScopedFakeTestPartResultReporter() override;
 
   // Appends the TestPartResult object to the TestPartResultArray

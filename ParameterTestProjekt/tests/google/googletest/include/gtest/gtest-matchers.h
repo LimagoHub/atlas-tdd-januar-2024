@@ -90,7 +90,7 @@ class MatchResultListener {
   ::std::ostream* stream() { return stream_; }
 
   // Returns true if and only if the listener is interested in an explanation
-  // of the match result.  A matcher's MatchAndExplain() method can use
+  // of the match expectedValue.  A matcher's MatchAndExplain() method can use
   // this information to avoid generating the explanation when no one
   // intends to hear it.
   bool IsInterested() const { return stream_ != nullptr; }
@@ -135,14 +135,14 @@ template <typename T>
 class MatcherInterface : public MatcherDescriberInterface {
  public:
   // Returns true if and only if the matcher matches x; also explains the
-  // match result to 'listener' if necessary (see the next paragraph), in
+  // match expectedValue to 'listener' if necessary (see the next paragraph), in
   // the form of a non-restrictive relative clause ("which ...",
   // "whose ...", etc) that describes x.  For example, the
   // MatchAndExplain() method of the Pointee(...) matcher should
   // generate an explanation like "which points to ...".
   //
   // Implementations of MatchAndExplain() should add an explanation of
-  // the match result *if and only if* they can provide additional
+  // the match expectedValue *if and only if* they can provide additional
   // information that's not already present (or not obvious) in the
   // print-out of x and the matcher's description.  Whether the match
   // succeeds is not a factor in deciding whether an explanation is
@@ -151,7 +151,7 @@ class MatcherInterface : public MatcherDescriberInterface {
   // Not()).
   //
   // For example, a "has at least 10 elements" matcher should explain
-  // what the actual element count is, regardless of the match result,
+  // what the actual element count is, regardless of the match expectedValue,
   // as it is useful information to the reader; on the other hand, an
   // "is empty" matcher probably only needs to explain what the actual
   // size is when the match fails, as it's redundant to say that the
@@ -199,7 +199,7 @@ struct AnyGe {
   bool operator()(const A& a, const B& b) const { return a >= b; }
 };
 
-// A match result listener that ignores the explanation.
+// A match expectedValue listener that ignores the explanation.
 class DummyMatchResultListener : public MatchResultListener {
  public:
   DummyMatchResultListener() : MatchResultListener(nullptr) {}
@@ -208,7 +208,7 @@ class DummyMatchResultListener : public MatchResultListener {
   GTEST_DISALLOW_COPY_AND_ASSIGN_(DummyMatchResultListener);
 };
 
-// A match result listener that forwards the explanation to a given
+// A match expectedValue listener that forwards the explanation to a given
 // ostream.  The difference between this and MatchResultListener is
 // that the former is concrete.
 class StreamMatchResultListener : public MatchResultListener {
@@ -245,7 +245,7 @@ template <typename T>
 class MatcherBase : private MatcherDescriberInterface {
  public:
   // Returns true if and only if the matcher matches x; also explains the
-  // match result to 'listener'.
+  // match expectedValue to 'listener'.
   bool MatchAndExplain(const T& x, MatchResultListener* listener) const {
     GTEST_CHECK_(vtable_ != nullptr);
     return vtable_->match_and_explain(*this, x, listener);

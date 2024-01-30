@@ -142,7 +142,7 @@ Verifies that *`condition`* is false.
 
 The following assertions compare two values. The value arguments must be
 comparable by the assertion's comparison operator, otherwise a compiler error
-will result.
+will expectedValue.
 
 If an argument supports the `<<` operator, it will be called to print the
 argument when the assertion fails. Otherwise, GoogleTest will attempt to print
@@ -393,7 +393,7 @@ EXPECT_PRED1(static_cast<bool (*)(int)>(IsPositive), 5);
 EXPECT_PRED1(static_cast<bool (*)(double)>(IsPositive), 3.14);
 ```
 
-Writing simply `EXPECT_PRED1(IsPositive, 5);` would result in a compiler error.
+Writing simply `EXPECT_PRED1(IsPositive, 5);` would expectedValue in a compiler error.
 Similarly, to use a template function, specify the template arguments:
 
 ```cpp

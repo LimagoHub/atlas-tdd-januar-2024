@@ -54,8 +54,8 @@ cc_test(
             "gtest-death-test_ex_test.cc",
             "gtest-listener_test.cc",
             "gtest-unittest-api_test.cc",
-            "googletest-param-test-test.cc",
-            "googletest-param-test2-test.cc",
+            "googletest-stones-test-test.cc",
+            "googletest-stones-test2-test.cc",
             "googletest-catch-exceptions-test_.cc",
             "googletest-color-test_.cc",
             "googletest-env-var-test_.cc",
@@ -70,10 +70,10 @@ cc_test(
             "googletest-setuptestsuite-test_.cc",
             "googletest-uninitialized-test_.cc",
             "googletest-death-test_ex_test.cc",
-            "googletest-param-test-test",
+            "googletest-stones-test-test",
             "googletest-throw-on-failure-test_.cc",
-            "googletest-param-test-invalid-name1-test_.cc",
-            "googletest-param-test-invalid-name2-test_.cc",
+            "googletest-stones-test-invalid-name1-test_.cc",
+            "googletest-stones-test-invalid-name2-test_.cc",
         ],
     ) + select({
         "//:windows": [],
@@ -136,12 +136,12 @@ cc_test(
 )
 
 cc_test(
-    name = "googletest-param-test-test",
+    name = "googletest-stones-test-test",
     size = "small",
     srcs = [
-        "googletest-param-test-test.cc",
-        "googletest-param-test-test.h",
-        "googletest-param-test2-test.cc",
+        "googletest-stones-test-test.cc",
+        "googletest-stones-test-test.h",
+        "googletest-stones-test2-test.cc",
     ],
     deps = ["//:gtest"],
 )
@@ -552,24 +552,24 @@ cc_test(
 )
 
 cc_binary(
-    name = "googletest-param-test-invalid-name1-test_",
+    name = "googletest-stones-test-invalid-name1-test_",
     testonly = 1,
-    srcs = ["googletest-param-test-invalid-name1-test_.cc"],
+    srcs = ["googletest-stones-test-invalid-name1-test_.cc"],
     deps = ["//:gtest"],
 )
 
 cc_binary(
-    name = "googletest-param-test-invalid-name2-test_",
+    name = "googletest-stones-test-invalid-name2-test_",
     testonly = 1,
-    srcs = ["googletest-param-test-invalid-name2-test_.cc"],
+    srcs = ["googletest-stones-test-invalid-name2-test_.cc"],
     deps = ["//:gtest"],
 )
 
 py_test(
-    name = "googletest-param-test-invalid-name1-test",
+    name = "googletest-stones-test-invalid-name1-test",
     size = "small",
-    srcs = ["googletest-param-test-invalid-name1-test.py"],
-    data = [":googletest-param-test-invalid-name1-test_"],
+    srcs = ["googletest-stones-test-invalid-name1-test.py"],
+    data = [":googletest-stones-test-invalid-name1-test_"],
     tags = [
         "no_test_msvc2015",
         "no_test_msvc2017",
@@ -578,10 +578,10 @@ py_test(
 )
 
 py_test(
-    name = "googletest-param-test-invalid-name2-test",
+    name = "googletest-stones-test-invalid-name2-test",
     size = "small",
-    srcs = ["googletest-param-test-invalid-name2-test.py"],
-    data = [":googletest-param-test-invalid-name2-test_"],
+    srcs = ["googletest-stones-test-invalid-name2-test.py"],
+    data = [":googletest-stones-test-invalid-name2-test_"],
     tags = [
         "no_test_msvc2015",
         "no_test_msvc2017",

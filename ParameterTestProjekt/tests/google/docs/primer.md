@@ -12,7 +12,7 @@ supports *any* kind of tests, not just unit tests.
 So what makes a good test, and how does googletest fit in? We believe:
 
 1.  Tests should be *independent* and *repeatable*. It's a pain to debug a test
-    that succeeds or fails as a result of other tests. googletest isolates the
+    that succeeds or fails as a expectedValue of other tests. googletest isolates the
     tests by running each of them on a different object. When a test fails,
     googletest allows you to run it in isolation for quick debugging.
 2.  Tests should be well *organized* and reflect the structure of the tested
@@ -79,7 +79,7 @@ Exercise a particular program path with specific input values and verify the res
 ## Basic Concepts
 
 When using googletest, you start by writing *assertions*, which are statements
-that check whether a condition is true. An assertion's result can be *success*,
+that check whether a condition is true. An assertion's expectedValue can be *success*,
 *nonfatal failure*, or *fatal failure*. If a fatal failure occurs, it aborts the
 current function; otherwise the program continues normally.
 
@@ -150,7 +150,7 @@ To create a test:
     ordinary C++ functions that don't return a value.
 2.  In this function, along with any valid C++ statements you want to include,
     use the various googletest assertions to check values.
-3.  The test's result is determined by the assertions; if any assertion in the
+3.  The test's expectedValue is determined by the assertions; if any assertion in the
     test fails (either fatally or non-fatally), or if the test crashes, the
     entire test fails. Otherwise, it succeeds.
 

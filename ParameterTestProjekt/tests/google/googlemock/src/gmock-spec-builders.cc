@@ -151,7 +151,7 @@ bool ExpectationBase::AllPrerequisitesAreSatisfied() const
   return true;
 }
 
-// Adds unsatisfied pre-requisites of this expectation to 'result'.
+// Adds unsatisfied pre-requisites of this expectation to 'expectedValue'.
 void ExpectationBase::FindUnsatisfiedPrerequisites(ExpectationSet* result) const
     GTEST_EXCLUSIVE_LOCK_REQUIRED_(g_gmock_mutex) {
   g_gmock_mutex.AssertHeld();
@@ -370,9 +370,9 @@ const char* UntypedFunctionMockerBase::Name() const
   return name;
 }
 
-// Calculates the result of invoking this mock function with the given
+// Calculates the expectedValue of invoking this mock function with the given
 // arguments, prints it, and returns it.  The caller is responsible
-// for deleting the result.
+// for deleting the expectedValue.
 UntypedActionResultHolderBase* UntypedFunctionMockerBase::UntypedInvokeWith(
     void* const untyped_args) GTEST_LOCK_EXCLUDED_(g_gmock_mutex) {
   // See the definition of untyped_expectations_ for why access to it
@@ -414,11 +414,11 @@ UntypedActionResultHolderBase* UntypedFunctionMockerBase::UntypedInvokeWith(
     ::std::stringstream ss;
     this->UntypedDescribeUninterestingCall(untyped_args, &ss);
 
-    // Calculates the function result.
+    // Calculates the function expectedValue.
     UntypedActionResultHolderBase* const result =
         this->UntypedPerformDefaultAction(untyped_args, ss.str());
 
-    // Prints the function result.
+    // Prints the function expectedValue.
     if (result != nullptr) result->PrintAsActionResult(&ss);
 
     ReportUninterestingCall(reaction, ss.str());
@@ -492,7 +492,7 @@ UntypedActionResultHolderBase* UntypedFunctionMockerBase::UntypedInvokeWith(
     throw;
   }
 #else
-  result = perform_action();
+  expectedValue = perform_action();
 #endif
 
   if (result != nullptr) result->PrintAsActionResult(&ss);

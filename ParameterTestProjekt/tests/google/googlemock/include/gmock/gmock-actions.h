@@ -94,7 +94,7 @@
 // In particular, you can provide the template type arguments
 // explicitly when invoking Foo(), as in Foo<long, bool>(5, false);
 // although usually you can rely on the compiler to infer the types
-// for you automatically.  You can assign the result of expression
+// for you automatically.  You can assign the expectedValue of expression
 // Foo(p1, ..., pk) to a variable of type FooActionPk<p1_type, ...,
 // pk_type>.  This can be useful when composing actions.
 //
@@ -535,7 +535,7 @@ class Action {
 //    public:
 //     template <typename Result, typename ArgumentTuple>
 //     Result Perform(const ArgumentTuple& args) const {
-//       // Processes the arguments and returns a result, using
+//       // Processes the arguments and returns a expectedValue, using
 //       // std::get<N>(args) to get the N-th (0-based) argument in the tuple.
 //     }
 //     ...
@@ -625,7 +625,7 @@ struct ByMoveWrapper {
 // that copy will be left with a hanging reference.  If conversion to T
 // makes a copy of foo, the above code is safe. To support that scenario, we
 // need to make sure that the type conversion happens inside the EXPECT_CALL
-// statement, and conversion of the result of Return to Action<T(U)> is a
+// statement, and conversion of the expectedValue of Return to Action<T(U)> is a
 // good place for that.
 //
 // The real life example of the above scenario happens when an invocation
@@ -993,7 +993,7 @@ class IgnoreResultAction {
     explicit Impl(const A& action) : action_(action) {}
 
     void Perform(const ArgumentTuple& args) override {
-      // Performs the action and ignores its result.
+      // Performs the action and ignores its expectedValue.
       action_.Perform(args);
     }
 
@@ -1368,7 +1368,7 @@ internal::InvokeMethodWithoutArgsAction<Class, MethodPtr> InvokeWithoutArgs(
 }
 
 // Creates an action that performs an_action and throws away its
-// result.  In other words, it changes the return type of an_action to
+// expectedValue.  In other words, it changes the return type of an_action to
 // void.  an_action MUST NOT return void, or the code won't compile.
 template <typename A>
 inline internal::IgnoreResultAction<A> IgnoreResult(const A& an_action) {

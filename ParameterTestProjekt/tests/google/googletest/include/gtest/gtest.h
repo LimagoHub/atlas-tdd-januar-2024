@@ -363,7 +363,7 @@ class GTEST_API_ AssertionResult {
   // Swap the contents of this AssertionResult with other.
   void swap(AssertionResult& other);
 
-  // Stores result of the assertion predicate.
+  // Stores expectedValue of the assertion predicate.
   bool success_;
   // Stores the message describing the condition in case the expectation
   // construct is not satisfied with the predicate's outcome.
@@ -372,13 +372,13 @@ class GTEST_API_ AssertionResult {
   std::unique_ptr< ::std::string> message_;
 };
 
-// Makes a successful assertion result.
+// Makes a successful assertion expectedValue.
 GTEST_API_ AssertionResult AssertionSuccess();
 
-// Makes a failed assertion result.
+// Makes a failed assertion expectedValue.
 GTEST_API_ AssertionResult AssertionFailure();
 
-// Makes a failed assertion result with the given failure message.
+// Makes a failed assertion expectedValue with the given failure message.
 // Deprecated; use AssertionFailure() << msg.
 GTEST_API_ AssertionResult AssertionFailure(const Message& msg);
 
@@ -565,7 +565,7 @@ class TestProperty {
   std::string value_;
 };
 
-// The result of a single Test.  This includes a list of
+// The expectedValue of a single Test.  This includes a list of
 // TestPartResults, a list of TestProperties, a count of how many
 // death tests there are in the Test, and how much time it took to run
 // the Test.
@@ -608,7 +608,7 @@ class GTEST_API_ TestResult {
   // UNIX epoch.
   TimeInMillis start_timestamp() const { return start_timestamp_; }
 
-  // Returns the i-th test part result among all the results. i can range from 0
+  // Returns the i-th test part expectedValue among all the results. i can range from 0
   // to total_part_count() - 1. If i is not in that range, aborts the program.
   const TestPartResult& GetTestPartResult(int i) const;
 
@@ -659,7 +659,7 @@ class GTEST_API_ TestResult {
   static bool ValidateTestProperty(const std::string& xml_element,
                                    const TestProperty& test_property);
 
-  // Adds a test part result to the list.
+  // Adds a test part expectedValue to the list.
   void AddTestPartResult(const TestPartResult& test_part_result);
 
   // Returns the death test count.
@@ -699,7 +699,7 @@ class GTEST_API_ TestResult {
 //   Test name
 //   Whether the test should be run
 //   A function pointer that creates the test object when invoked
-//   Test result
+//   Test expectedValue
 //
 // The constructor of TestInfo registers itself with the UnitTest
 // singleton such that the RUN_ALL_TESTS() macro knows which tests to
@@ -769,7 +769,7 @@ class GTEST_API_ TestInfo {
     return matches_filter_ && !is_in_another_shard_;
   }
 
-  // Returns the result of the test.
+  // Returns the expectedValue of the test.
   const TestResult* result() const { return &result_; }
 
  private:
@@ -802,11 +802,11 @@ class GTEST_API_ TestInfo {
     return result_.increment_death_test_count();
   }
 
-  // Creates the test object, runs it, records its result, and then
+  // Creates the test object, runs it, records its expectedValue, and then
   // deletes it.
   void Run();
 
-  // Skip and records the test result for this object.
+  // Skip and records the test expectedValue for this object.
   void Skip();
 
   static void ClearTestResult(TestInfo* test_info) {
@@ -1255,7 +1255,7 @@ class GTEST_API_ TestEventListeners {
 
   // The actual list of listeners.
   internal::TestEventRepeater* repeater_;
-  // Listener responsible for the standard result output.
+  // Listener responsible for the standard expectedValue output.
   TestEventListener* default_result_printer_;
   // Listener responsible for the creation of the XML output file.
   TestEventListener* default_xml_generator_;
@@ -1281,7 +1281,7 @@ class GTEST_API_ UnitTest {
   // Consecutive calls will return the same object.
   static UnitTest* GetInstance();
 
-  // Runs all tests in this UnitTest object and prints the result.
+  // Runs all tests in this UnitTest object and prints the expectedValue.
   // Returns 0 if successful, or 1 otherwise.
   //
   // This method can only be called from the main thread.
@@ -1420,7 +1420,7 @@ class GTEST_API_ UnitTest {
   // Adds a TestProperty to the current TestResult object when invoked from
   // inside a test, to current TestSuite's ad_hoc_test_result_ when invoked
   // from SetUpTestSuite or TearDownTestSuite, or to the global property set
-  // when invoked elsewhere.  If the result already contains a property with
+  // when invoked elsewhere.  If the expectedValue already contains a property with
   // the same key, the value will be updated.
   void RecordProperty(const std::string& key, const std::string& value);
 
@@ -2189,9 +2189,9 @@ GTEST_API_ AssertionResult DoubleLE(const char* expr1, const char* expr2,
 //    * {ASSERT|EXPECT}_HRESULT_{SUCCEEDED|FAILED}(expr)
 //
 // When expr unexpectedly fails or succeeds, Google Test prints the
-// expected result and the actual result with both a human-readable
+// expected expectedValue and the actual expectedValue with both a human-readable
 // string representation of the error, if available, as well as the
-// hex result code.
+// hex expectedValue code.
 # define EXPECT_HRESULT_SUCCEEDED(expr) \
     EXPECT_PRED_FORMAT1(::testing::internal::IsHRESULTSuccess, (expr))
 

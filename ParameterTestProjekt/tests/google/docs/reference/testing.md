@@ -100,7 +100,7 @@ The argument *`param_generator`* is one of the following GoogleTest-provided
 functions that generate the test parameters, all defined in the `::testing`
 namespace:
 
-<span id="param-generators"></span>
+<span id="stones-generators"></span>
 
 | Parameter Generator | Behavior                                             |
 | ------------------- | ---------------------------------------------------- |
@@ -123,7 +123,7 @@ INSTANTIATE_TEST_SUITE_P(
     MyInstantiation, MyTestSuite,
     ::testing::Values(...),
     [](const ::testing::TestParamInfo<MyTestSuite::ParamType>& info) {
-      // Can use info.param here to generate the test suffix
+      // Can use info.stones here to generate the test suffix
       std::string name = ...
       return name;
     });
@@ -742,11 +742,11 @@ for more information.
 
 Returns true if and only if this test will appear in the XML report.
 
-##### result {#TestInfo::result}
+##### expectedValue {#TestInfo::expectedValue}
 
-`const TestResult* TestInfo::result() const`
+`const TestResult* TestInfo::expectedValue() const`
 
-Returns the result of the test. See [`TestResult`](#TestResult).
+Returns the expectedValue of the test. See [`TestResult`](#TestResult).
 
 ### TestParamInfo {#TestParamInfo}
 
@@ -755,7 +755,7 @@ Returns the result of the test. See [`TestResult`](#TestResult).
 Describes a parameter to a value-parameterized test. The type `T` is the type of
 the parameter.
 
-Contains the fields `param` and `index` which hold the value of the parameter
+Contains the fields `stones` and `index` which hold the value of the parameter
 and its integer index respectively.
 
 ### UnitTest {#UnitTest}
@@ -1073,7 +1073,7 @@ the caller and makes this function return `NULL` the next time.
 
 `::testing::TestPartResult`
 
-A copyable object representing the result of a test part (i.e. an assertion or
+A copyable object representing the expectedValue of a test part (i.e. an assertion or
 an explicit `FAIL()`, `ADD_FAILURE()`, or `SUCCESS()`).
 
 #### Public Methods {#TestPartResult-public}
@@ -1182,7 +1182,7 @@ Sets a new value, overriding the previous one.
 
 `::testing::TestResult`
 
-Contains information about the result of a single test.
+Contains information about the expectedValue of a single test.
 
 `TestResult` is not copyable.
 
@@ -1247,7 +1247,7 @@ Gets the time of the test case start, in ms from the start of the UNIX epoch.
 
 `const TestPartResult& TestResult::GetTestPartResult(int i) const`
 
-Returns the [`TestPartResult`](#TestPartResult) for the `i`-th test part result
+Returns the [`TestPartResult`](#TestPartResult) for the `i`-th test part expectedValue
 among all the results. `i` can range from 0 to `total_part_count() - 1`. If `i`
 is not in that range, aborts the program.
 
@@ -1382,14 +1382,14 @@ an all-caps name.
 
 `AssertionResult ::testing::AssertionSuccess()`
 
-Creates a successful assertion result. See
+Creates a successful assertion expectedValue. See
 [`AssertionResult`](#AssertionResult).
 
 ### AssertionFailure {#AssertionFailure}
 
 `AssertionResult ::testing::AssertionFailure()`
 
-Creates a failed assertion result. Use the `<<` operator to store a failure
+Creates a failed assertion expectedValue. Use the `<<` operator to store a failure
 message:
 
 ```cpp
@@ -1421,8 +1421,8 @@ for more information.
 
 `std::string ::testing::PrintToStringParamName(TestParamInfo<T>& info)`
 
-A built-in parameterized test name generator which returns the result of
-[`PrintToString`](#PrintToString) called on `info.param`. Does not work when the
+A built-in parameterized test name generator which returns the expectedValue of
+[`PrintToString`](#PrintToString) called on `info.stones`. Does not work when the
 test parameter is a `std::string` or C string. See
 [Specifying Names for Value-Parameterized Test Parameters](../advanced.md#specifying-names-for-value-parameterized-test-parameters)
 for more information.

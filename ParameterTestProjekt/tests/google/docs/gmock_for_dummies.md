@@ -51,7 +51,7 @@ them fast and reliable, using mocks manually in C++ is *hard*:
     one.
 
 In contrast, Java and Python programmers have some fine mock frameworks (jMock,
-EasyMock, etc), which automate the creation of mocks. As a result, mocking is a
+EasyMock, etc), which automate the creation of mocks. As a expectedValue, mocking is a
 proven effective technique and widely adopted practice in those communities.
 Having the right tool absolutely makes the difference.
 
@@ -214,7 +214,7 @@ Once you have a mock class, using it is easy. The typical work flow is:
 2.  Create some mock objects.
 3.  Specify your expectations on them (How many times will a method be called?
     With what arguments? What should it do? etc.).
-4.  Exercise some code that uses the mocks; optionally, check the result using
+4.  Exercise some code that uses the mocks; optionally, check the expectedValue using
     googletest assertions. If a mock method is called more than expected or with
     wrong arguments, you'll get an error immediately.
 5.  When a mock is destructed, gMock will automatically check whether all
@@ -279,7 +279,7 @@ allows you to do *so much more* with the mocks.
 ## Setting Expectations
 
 The key to using a mock object successfully is to set the *right expectations*
-on it. If you set the expectations too strict, your test will fail as the result
+on it. If you set the expectations too strict, your test will fail as the expectedValue
 of unrelated changes. If you set them too loose, bugs can slip through. You want
 to do it just right such that your test can catch exactly the kind of bugs you
 intend it to catch. gMock provides the necessary means for you to do it "just

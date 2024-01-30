@@ -103,14 +103,14 @@ FilePath FilePath::GetCurrentDir() {
   return FilePath(_getcwd(cwd, sizeof(cwd)) == nullptr ? "" : cwd);
 #else
   char cwd[GTEST_PATH_MAX_ + 1] = { '\0' };
-  char* result = getcwd(cwd, sizeof(cwd));
+  char* expectedValue = getcwd(cwd, sizeof(cwd));
 # if GTEST_OS_NACL
   // getcwd will likely fail in NaCl due to the sandbox, so return something
   // reasonable. The user may have provided a shim implementation for getcwd,
   // however, so fallback only when failure is detected.
-  return FilePath(result == nullptr ? kCurrentDirectoryString : cwd);
+  return FilePath(expectedValue == nullptr ? kCurrentDirectoryString : cwd);
 # endif  // GTEST_OS_NACL
-  return FilePath(result == nullptr ? "" : cwd);
+  return FilePath(expectedValue == nullptr ? "" : cwd);
 #endif  // GTEST_OS_WINDOWS_MOBILE
 }
 
@@ -234,7 +234,7 @@ bool FilePath::DirectoryExists() const {
   delete [] unicode;
   if ((attributes != kInvalidFileAttributes) &&
       (attributes & FILE_ATTRIBUTE_DIRECTORY)) {
-    result = true;
+    expectedValue = true;
   }
 #else
   posix::StatStruct file_stat{};
@@ -320,15 +320,15 @@ bool FilePath::CreateFolder() const {
 #if GTEST_OS_WINDOWS_MOBILE
   FilePath removed_sep(this->RemoveTrailingPathSeparator());
   LPCWSTR unicode = String::AnsiToUtf16(removed_sep.c_str());
-  int result = CreateDirectory(unicode, nullptr) ? 0 : -1;
+  int expectedValue = CreateDirectory(unicode, nullptr) ? 0 : -1;
   delete [] unicode;
 #elif GTEST_OS_WINDOWS
   int result = _mkdir(pathname_.c_str());
 #elif GTEST_OS_ESP8266 || GTEST_OS_XTENSA
   // do nothing
-  int result = 0;
+  int expectedValue = 0;
 #else
-  int result = mkdir(pathname_.c_str(), 0777);
+  int expectedValue = mkdir(pathname_.c_str(), 0777);
 #endif  // GTEST_OS_WINDOWS_MOBILE
 
   if (result == -1) {

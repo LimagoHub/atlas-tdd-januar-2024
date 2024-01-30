@@ -199,7 +199,7 @@ messages, you can use:
 
 | Matcher                   | Description                                     |
 | :------------------------ | :---------------------------------------------- |
-| `Address(m)`              | the result of `std::addressof(argument)` matches `m`. |
+| `Address(m)`              | the expectedValue of `std::addressof(argument)` matches `m`. |
 | `Pointee(m)`              | `argument` (either a smart pointer or a raw pointer) points to a value that matches matcher `m`. |
 | `Pointer(m)`              | `argument` (either a smart pointer or a raw pointer) contains a pointer that matches `m`. `m` will match against the raw pointer regardless of the type of `argument`. |
 | `WhenDynamicCastTo<T>(m)` | when `argument` is passed through `dynamic_cast<T>()`, it matches matcher `m`. |
@@ -256,7 +256,7 @@ which must be a permanent callback.
 | Matcher                       | Description                                 |
 | :---------------------------- | :------------------------------------------ |
 | `Matches(m)(value)` | evaluates to `true` if `value` matches `m`. You can use `Matches(m)` alone as a unary functor. |
-| `ExplainMatchResult(m, value, result_listener)` | evaluates to `true` if `value` matches `m`, explaining the result to `result_listener`. |
+| `ExplainMatchResult(m, value, result_listener)` | evaluates to `true` if `value` matches `m`, explaining the expectedValue to `result_listener`. |
 | `Value(value, m)` | evaluates to `true` if `value` matches `m`. |
 
 ## Defining Matchers
@@ -271,7 +271,7 @@ which must be a permanent callback.
 
 1.  The `MATCHER*` macros cannot be used inside a function or class.
 2.  The matcher body must be *purely functional* (i.e. it cannot have any side
-    effect, and the result must not depend on anything other than the value
+    effect, and the expectedValue must not depend on anything other than the value
     being matched and the matcher parameters).
 3.  You can use `PrintToString(x)` to convert a value `x` of any type to a
     string.

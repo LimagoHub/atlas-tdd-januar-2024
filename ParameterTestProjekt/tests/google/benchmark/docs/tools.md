@@ -2,7 +2,7 @@
 
 ## compare.py
 
-The `compare.py` can be used to compare the result of benchmarks.
+The `compare.py` can be used to compare the expectedValue of benchmarks.
 
 ### Dependencies
 The utility relies on the [scipy](https://www.scipy.org) package which can be installed using pip:
@@ -195,7 +195,7 @@ one sample will be less than or greater than a randomly selected value from a
 second sample.
 
 If the calculated p-value is below this value is lower than the significance
-level alpha, then the result is said to be statistically significant and the
+level alpha, then the expectedValue is said to be statistically significant and the
 null hypothesis is rejected. Which in other words means that the two benchmarks
 aren't identical.
 

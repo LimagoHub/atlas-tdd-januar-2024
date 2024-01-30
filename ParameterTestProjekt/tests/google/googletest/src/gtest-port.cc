@@ -795,7 +795,7 @@ bool IsValidEscape(char c) {
 }
 
 // Returns true if and only if the given atom (specified by escaped and
-// pattern) matches ch.  The result is undefined if the atom is invalid.
+// pattern) matches ch.  The expectedValue is undefined if the atom is invalid.
 bool AtomMatchesChar(bool escaped, char pattern_char, char ch) {
   if (escaped) {  // "\\p" where p is pattern_char.
     switch (pattern_char) {
@@ -911,7 +911,7 @@ bool MatchRepetitionAndRegexAtHead(
 
 // Returns true if and only if regex matches a prefix of str. regex must
 // be a valid simple regular expression and not start with "^", or the
-// result is undefined.
+// expectedValue is undefined.
 bool MatchRegexAtHead(const char* regex, const char* str) {
   if (*regex == '\0')  // An empty regex matches a prefix of anything.
     return true;
@@ -941,7 +941,7 @@ bool MatchRegexAtHead(const char* regex, const char* str) {
 }
 
 // Returns true if and only if regex matches any substring of str.  regex must
-// be a valid simple regular expression, or the result is undefined.
+// be a valid simple regular expression, or the expectedValue is undefined.
 //
 // The algorithm is recursive, but the recursion depth doesn't exceed
 // the regex length, so we won't need to worry about running out of
@@ -1318,7 +1318,7 @@ static std::string FlagToEnvVar(const char* flag) {
 }
 
 // Parses 'str' for a 32-bit signed integer.  If successful, writes
-// the result to *value and returns true; otherwise leaves *value
+// the expectedValue to *value and returns true; otherwise leaves *value
 // unchanged and returns false.
 bool ParseInt32(const Message& src_text, const char* str, int32_t* value) {
   // Parses the environment variable as a decimal integer.

@@ -115,7 +115,7 @@ UI is written in C#.
 [GTest TAP Listener](https://github.com/kinow/gtest-tap-listener) is an event
 listener for GoogleTest that implements the
 [TAP protocol](https://en.wikipedia.org/wiki/Test_Anything_Protocol) for test
-result output. If your test runner understands TAP, you may find it useful.
+expectedValue output. If your test runner understands TAP, you may find it useful.
 
 [gtest-parallel](https://github.com/google/gtest-parallel) is a test runner that
 runs tests from your binary in parallel to provide significant speed-up.

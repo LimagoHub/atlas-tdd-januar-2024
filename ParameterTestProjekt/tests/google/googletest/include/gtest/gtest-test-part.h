@@ -40,7 +40,7 @@ GTEST_DISABLE_MSC_WARNINGS_PUSH_(4251 \
 
 namespace testing {
 
-// A copyable object representing the result of a test part (i.e. an
+// A copyable object representing the expectedValue of a test part (i.e. an
 // assertion or an explicit FAIL(), ADD_FAILURE(), or SUCCESS()).
 //
 // Don't inherit from TestPartResult as its destructor is not virtual.
@@ -143,7 +143,7 @@ class GTEST_API_ TestPartResultArray {
   GTEST_DISALLOW_COPY_AND_ASSIGN_(TestPartResultArray);
 };
 
-// This interface knows how to report a test part result.
+// This interface knows how to report a test part expectedValue.
 class GTEST_API_ TestPartResultReporterInterface {
  public:
   virtual ~TestPartResultReporterInterface() {}
@@ -155,9 +155,9 @@ namespace internal {
 
 // This helper class is used by {ASSERT|EXPECT}_NO_FATAL_FAILURE to check if a
 // statement generates new fatal failures. To do so it registers itself as the
-// current test part result reporter. Besides checking if fatal failures were
-// reported, it only delegates the reporting to the former result reporter.
-// The original result reporter is restored in the destructor.
+// current test part expectedValue reporter. Besides checking if fatal failures were
+// reported, it only delegates the reporting to the former expectedValue reporter.
+// The original expectedValue reporter is restored in the destructor.
 // INTERNAL IMPLEMENTATION - DO NOT USE IN A USER PROGRAM.
 class GTEST_API_ HasNewFatalFailureHelper
     : public TestPartResultReporterInterface {

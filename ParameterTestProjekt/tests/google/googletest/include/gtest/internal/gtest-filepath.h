@@ -176,7 +176,7 @@ class GTEST_API_ FilePath {
   // redundancies that might be in a pathname involving "." or "..".
   //
   // A pathname with multiple consecutive separators may occur either through
-  // user error or as a result of some scripts or APIs that generate a pathname
+  // user error or as a expectedValue of some scripts or APIs that generate a pathname
   // with a trailing separator. On other platforms the same API or script
   // may NOT generate a pathname with a trailing "/". Then elsewhere that
   // pathname may have another "/" and pathname components added to it,
