@@ -5,7 +5,7 @@ set( gtest_force_shared_crt ON CACHE BOOL "")
 add_subdirectory(google)
 
 set(SOURCE
-	test.cpp Mockeuro_to_dollar_calculator.h Mockeuro_to_dollar_view.h Mockexchange_rate_service.h)
+	test.cpp Mockeuro_to_dollar_calculator.h Mockeuro_to_dollar_view.h Mockexchange_rate_service.h services/euro_to_dollar_calculator_impl_test.h services/euro_to_dollar_calculator_impl_test.cpp presenter/euro_to_dollar_presenter_impl_test.cpp presenter/euro_to_dollar_presenter_impl_test.h)
 
 # Create test executable
 add_executable(QT6EuroToDollarCalculatorTest ${SOURCE} ${HEADER}  )

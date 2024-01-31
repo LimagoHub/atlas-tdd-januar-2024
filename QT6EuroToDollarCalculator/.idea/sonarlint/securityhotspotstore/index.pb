@@ -19,3 +19,5 @@ W
 'source/services/exchange_rate_service.h,a\b\ab1cfb275d26b3b6c1bcbca82840966ddf3dd9c0
 [
 +source/presenter/euro_to_dollar_presenter.h,2\b\2b8bd83ddfe3c7d889e0bc06f37efde065816554
+\
+,source/services/exchange_rate_service_impl.h,b\0\b0526e675d38445bdaae1e4e46012391ca5fde38

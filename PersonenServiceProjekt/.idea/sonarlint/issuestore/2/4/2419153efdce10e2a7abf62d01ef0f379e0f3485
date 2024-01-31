@@ -5,3 +5,9 @@ H	cpp:S1117$"'declaration shadows a field of 'person'(ÇéÒÄøÿÿÿÿ8œÈ¯ËÕ1
 b	cpp:S6009"FReplace this const reference to "std::string" by a "std::string_view".(Î¬·Î8°È¯ËÕ1
 b	cpp:S6009"FReplace this const reference to "std::string" by a "std::string_view".(ÅĞÕ8°È¯ËÕ1
 g	cpp:S6009$"FReplace this const reference to "std::string" by a "std::string_view".(ÇéÒÄøÿÿÿÿ8±È¯ËÕ1
+C	cpp:S1117"'declaration shadows a field of 'person'(Î¬·Î8üĞ©ÕÕ1
+C	cpp:S1117"'declaration shadows a field of 'person'(ÅĞÕ8üĞ©ÕÕ1
+H	cpp:S1117$"'declaration shadows a field of 'person'(ÇéÒÄøÿÿÿÿ8üĞ©ÕÕ1
+C	cpp:S1117"'declaration shadows a field of 'person'(Î¬·Î8ÙŞ©ÕÕ1
+C	cpp:S1117"'declaration shadows a field of 'person'(ÅĞÕ8ÙŞ©ÕÕ1
+H	cpp:S1117$"'declaration shadows a field of 'person'(ÇéÒÄøÿÿÿÿ8ÙŞ©ÕÕ1
